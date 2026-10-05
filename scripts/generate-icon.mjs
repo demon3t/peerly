@@ -158,16 +158,41 @@ function encodeIco(images) {
   return Buffer.concat([header, ...entries, ...images.map((image) => image.png)]);
 }
 
+/** Apple .icns: PNG entries ic07…ic10 (128–1024 px) behind an 'icns' header. */
+function encodeIcns(entries) {
+  const chunks = entries.map(({ type, png }) => {
+    const head = Buffer.alloc(8);
+    head.write(type, 0, 'ascii');
+    head.writeUInt32BE(png.length + 8, 4);
+    return Buffer.concat([head, png]);
+  });
+  const header = Buffer.alloc(8);
+  header.write('icns', 0, 'ascii');
+  header.writeUInt32BE(8 + chunks.reduce((sum, chunk) => sum + chunk.length, 0), 4);
+  return Buffer.concat([header, ...chunks]);
+}
+
 // ---------- output ----------
 
 const images = SIZES.map((size) => ({ size, png: encodePng(size, render(size)) }));
 const largest = images[images.length - 1].png;
-// macOS (.icns) and Linux packages are built from build/icon.png and need at least 512 px.
+// Linux packages use build/icon.png (at least 512 px); macOS uses build/icon.icns.
 const PACKAGE_SIZE = 1024;
+const packagePng = encodePng(PACKAGE_SIZE, render(PACKAGE_SIZE));
+const ICNS_TYPES = { 128: 'ic07', 256: 'ic08', 512: 'ic09', 1024: 'ic10' };
 
 fs.mkdirSync(path.join(root, 'build'), { recursive: true });
 fs.mkdirSync(path.join(root, 'electron', 'assets'), { recursive: true });
-fs.writeFileSync(path.join(root, 'build', 'icon.png'), encodePng(PACKAGE_SIZE, render(PACKAGE_SIZE)));
+fs.writeFileSync(path.join(root, 'build', 'icon.png'), packagePng);
+fs.writeFileSync(
+  path.join(root, 'build', 'icon.icns'),
+  encodeIcns(
+    Object.entries(ICNS_TYPES).map(([size, type]) => ({
+      type,
+      png: Number(size) === PACKAGE_SIZE ? packagePng : encodePng(Number(size), render(Number(size))),
+    })),
+  ),
+);
 fs.writeFileSync(path.join(root, 'build', 'icon.ico'), encodeIco(images));
 fs.writeFileSync(path.join(root, 'electron', 'assets', 'icon.png'), largest);
-console.log(`Icon written (${SIZES.join(', ')} px; package icon ${PACKAGE_SIZE} px).`);
+console.log(`Icon written (${SIZES.join(', ')} px; package icon and .icns up to ${PACKAGE_SIZE} px).`);

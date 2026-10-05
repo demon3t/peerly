@@ -21,7 +21,7 @@ jobs:
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - id: version
         run: echo "version=$(node -p "require('./package.json').version")-build.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
 
@@ -43,9 +43,9 @@ jobs:
       # No signing certificates in CI: build unsigned installers.
       CSC_IDENTITY_AUTO_DISCOVERY: 'false'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
@@ -66,7 +66,7 @@ jobs:
       - name: Package installers
         run: node scripts/package-all.mjs ${{ matrix.target }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: peerly-${{ matrix.target }}
           path: release/upload/*
@@ -79,7 +79,7 @@ jobs:
       VERSION: ${{ needs.version.outputs.version }}
       GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           path: upload
           merge-multiple: true

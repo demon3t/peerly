@@ -61,13 +61,22 @@ function fetchWebRtc(platform, arch) {
   run(nodeBin, [installer, '-r', 'napi', '--platform', platform, '--arch', arch, '--force'], moduleDir);
 }
 
-/** The .ext file this build produced (Linux names the arch x86_64 / amd64, so match by time). */
-function builtFile(ext, since) {
-  const fresh = fs
-    .readdirSync(releaseDir)
-    .filter((file) => file.endsWith(`.${ext}`) && !file.includes('__uninstaller'))
-    .map((file) => path.join(releaseDir, file))
-    .filter((file) => fs.statSync(file).mtimeMs >= since);
+/** Name -> modification time of every file in release/, to tell this build's output apart. */
+const snapshot = () =>
+  new Map(
+    fs
+      .readdirSync(releaseDir, { withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((entry) => [entry.name, fs.statSync(path.join(releaseDir, entry.name)).mtimeMs]),
+  );
+
+/** The .ext file this build produced (Linux names the arch x86_64 / amd64, so compare with the snapshot). */
+function builtFile(ext, before) {
+  const fresh = [...snapshot()]
+    .filter(
+      ([name, mtime]) => name.endsWith(`.${ext}`) && !name.includes('__uninstaller') && before.get(name) !== mtime,
+    )
+    .map(([name]) => path.join(releaseDir, name));
   if (fresh.length !== 1) throw new Error(`Expected one new .${ext} in ${releaseDir}, found ${fresh.length}`);
   return fresh[0];
 }
@@ -78,10 +87,10 @@ try {
   for (const [arch, { prebuild, files }] of Object.entries(target.archs)) {
     fetchWebRtc(target.platform, prebuild);
     console.log(`\n> electron-builder --${os} --${arch}`);
-    const started = Date.now() - 1000;
+    const before = snapshot();
     run(nodeBin, [builder, `--${os}`, `--${arch}`, '--publish', 'never']);
     for (const [ext, publicName] of Object.entries(files)) {
-      fs.copyFileSync(builtFile(ext, started), path.join(uploadDir, publicName));
+      fs.copyFileSync(builtFile(ext, before), path.join(uploadDir, publicName));
       console.log(`  ${publicName}`);
     }
   }
