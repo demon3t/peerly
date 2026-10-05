@@ -1,0 +1,395 @@
+{
+  "meta": {
+    "name": "Polski",
+    "locale": "pl-PL"
+  },
+  "common": {
+    "add": "Dodaj",
+    "cancel": "Anuluj",
+    "close": "Zamknij",
+    "delete": "Usuń",
+    "loading": "Wczytywanie…"
+  },
+  "nav": {
+    "all": "Wszystkie torrenty",
+    "active": "Pobierane",
+    "seeding": "Udostępniane",
+    "paused": "Wstrzymane",
+    "stats": "Statystyki",
+    "settings": "Ustawienia",
+    "completed": "Ukończone"
+  },
+  "network": {
+    "online": "Połączono",
+    "connecting": "Łączenie…",
+    "freeSpace": "Wolne: {size}"
+  },
+  "status": {
+    "downloading": "Pobieranie",
+    "metadata": "Metadane",
+    "checking": "Sprawdzanie",
+    "seeding": "Udostępnianie",
+    "paused": "Wstrzymany",
+    "error": "Błąd",
+    "queued": "W kolejce",
+    "completed": "Ukończony",
+    "scheduled": "Wg harmonogramu"
+  },
+  "actions": {
+    "pause": "Wstrzymaj",
+    "resume": "Wznów"
+  },
+  "dashboard": {
+    "search": "Szukaj",
+    "clearSearch": "Wyczyść wyszukiwanie",
+    "demoNote": "Podgląd w przeglądarce — wyświetlane są dane demonstracyjne.",
+    "emptyTitle": "Na razie pusto",
+    "emptyText": "Dodaj plik .torrent lub link magnet — albo po prostu przeciągnij plik do okna.",
+    "addMagnet": "Link magnet",
+    "addTorrent": "Dodaj torrent",
+    "notFoundTitle": "Nic nie znaleziono",
+    "notFoundText": "Spróbuj innego wyszukiwania lub innej sekcji."
+  },
+  "table": {
+    "name": "Nazwa",
+    "progress": "Postęp",
+    "speed": "Prędkość",
+    "ratio": "Ratio",
+    "actions": "Akcje",
+    "remaining": "pozostało {time}",
+    "ofSize": "{done} z {total}",
+    "sizeUnknown": "rozmiar nieznany",
+    "fetchingMetadata": "Pobieranie metadanych…"
+  },
+  "ratio": {
+    "hint": "Ratio = wysłano ÷ pobrano. 1,00 lub więcej oznacza, że oddałeś co najmniej tyle, ile otrzymałeś.",
+    "uploaded": "Wysłano",
+    "downloaded": "Pobrano"
+  },
+  "time": {
+    "seconds": "{n} s",
+    "minutes": "{n} min",
+    "hoursMinutes": "{h} godz. {m} min",
+    "daysHours": "{d} d {h} godz."
+  },
+  "menu": {
+    "details": "Szczegóły",
+    "openFolder": "Otwórz folder",
+    "copyMagnet": "Kopiuj link magnet",
+    "saveTorrent": "Zapisz .torrent",
+    "remove": "Usuń…",
+    "recheck": "Wymuś ponowne sprawdzenie",
+    "move": "Przenieś…",
+    "addTrackers": "Dodaj trackery…"
+  },
+  "details": {
+    "label": "Szczegóły torrenta",
+    "download": "Pobieranie",
+    "upload": "Wysyłanie",
+    "peers": "Partnerzy",
+    "remaining": "Pozostało",
+    "folder": "Folder",
+    "tabs": {
+      "files": "Pliki",
+      "peers": "Partnerzy",
+      "info": "Informacje",
+      "trackers": "Trackery",
+      "speed": "Prędkość"
+    },
+    "noFiles": "Lista plików pojawi się po otrzymaniu metadanych.",
+    "openFileHint": "Kliknij dwukrotnie, aby otworzyć plik",
+    "pausedNoPeers": "Torrent jest wstrzymany.",
+    "searchingPeers": "Szukanie partnerów przez DHT i trackery…",
+    "info": {
+      "size": "Rozmiar",
+      "files": "Pliki",
+      "onDisk": "Na dysku",
+      "type": "Typ",
+      "private": "Torrent prywatny (bez DHT/PEX)",
+      "added": "Dodano",
+      "completed": "Ukończono",
+      "folder": "Folder",
+      "infoHash": "Info hash",
+      "selected": "{selected} z {total}",
+      "wasted": "Zmarnowano",
+      "seedingTime": "Czas udostępniania"
+    },
+    "seedingTime": "Udostępniany od",
+    "unknownClient": "Nieznany klient",
+    "peerProgress": "Ile partner już ma",
+    "priority": {
+      "label": "Priorytet",
+      "skip": "Nie pobieraj",
+      "normal": "Normalny",
+      "high": "Wysoki"
+    },
+    "trackers": {
+      "dht": "DHT",
+      "pex": "PEX (wymiana partnerów)",
+      "lsd": "Wykrywanie w sieci lokalnej",
+      "on": "Włączone",
+      "off": "Wyłączone",
+      "private": "Wyłączone: torrent prywatny",
+      "add": "Dodaj trackery"
+    }
+  },
+  "add": {
+    "titleDownload": "Dodaj torrent",
+    "titleSeed": "Udostępnij plik lub folder",
+    "modeTorrent": ".torrent",
+    "modeMagnet": "Magnet",
+    "modeSeed": "Udostępnij",
+    "magnetLabel": "Link magnet",
+    "magnetPlaceholder": "magnet:?xt=urn:btih:…  (można kilka, po jednym w wierszu)",
+    "dropTorrent": "Przeciągnij tutaj plik .torrent",
+    "dropTorrentHint": "lub wybierz jeden albo kilka plików",
+    "dropSeed": "Przeciągnij tutaj plik lub folder",
+    "dropSeedHint": "Peerly utworzy standardowy plik .torrent, zgodny z każdym klientem",
+    "filesSelected": "Wybrane pliki: {count}",
+    "pickTorrent": "Wybierz .torrent",
+    "pickOther": "Wybierz inny",
+    "pickFile": "Plik",
+    "pickFolder": "Folder",
+    "saveFolder": "Folder pobierania",
+    "chooseFolder": "Wybierz folder",
+    "previewNoName": "Nazwa pojawi się po otrzymaniu metadanych",
+    "previewSizeUnknown": "rozmiar będzie znany po połączeniu",
+    "previewInvalid": "To nie wygląda na poprawny torrent.",
+    "fileCount": {
+      "one": "{count} plik",
+      "few": "{count} pliki",
+      "many": "{count} plików",
+      "other": "{count} pliku"
+    },
+    "adding": "Dodawanie…",
+    "hashing": "Obliczanie sum kontrolnych…",
+    "startDownload": "Rozpocznij pobieranie",
+    "createSeed": "Utwórz torrent",
+    "needTorrent": "Wybierz plik .torrent.",
+    "needMagnet": "Wklej link magnet (zaczyna się od magnet:?).",
+    "needSeedSource": "Wybierz plik lub folder do udostępnienia.",
+    "doneOne": "Torrent dodany — pobieranie rozpoczęte.",
+    "doneMany": "Dodano torrenty: {count}.",
+    "doneSeed": "Torrent utworzony. Plik .torrent lub link magnet udostępnisz z menu zadania.",
+    "needFiles": "Wybierz co najmniej jeden plik.",
+    "startPaused": "Nie rozpoczynaj pobierania od razu",
+    "filesToDownload": "Pliki do pobrania",
+    "selectedSize": "{selected} z {total}",
+    "advanced": "Zaawansowane",
+    "private": "Torrent prywatny",
+    "privateHint": "Tylko dla prywatnych trackerów: bez DHT i wymiany partnerów",
+    "trackers": "Trackery",
+    "trackersPlaceholder": "Adresy trackerów, po jednym w wierszu",
+    "comment": "Komentarz"
+  },
+  "remove": {
+    "title": "Usunąć zadanie?",
+    "text": "„{name}” zniknie z listy, a udostępnianie zostanie zatrzymane.",
+    "deleteFiles": "Usuń także pobrane pliki z dysku",
+    "seedHint": "Twoje oryginalne pliki pozostaną na miejscu."
+  },
+  "drop": {
+    "title": "Upuść, aby dodać",
+    "zoneTitle": "Upuść tutaj, aby dodać do pobieranych",
+    "hint": "Pliki .torrent zostaną pobrane, pozostałe pliki i foldery — udostępnione"
+  },
+  "stats": {
+    "title": "Statystyki",
+    "downloaded": "Pobrano łącznie",
+    "uploaded": "Wysłano łącznie",
+    "ratio": "Ogólne ratio",
+    "table": {
+      "torrent": "Torrent"
+    }
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "sections": {
+      "general": "Ogólne",
+      "downloads": "Pobieranie",
+      "seeding": "Udostępnianie",
+      "connection": "Połączenie",
+      "speed": "Prędkość",
+      "schedule": "Harmonogram",
+      "adding": "Dodawanie torrentów",
+      "altSpeed": "Alternatywne limity",
+      "seedingLimits": "Limity udostępniania",
+      "about": "O programie"
+    },
+    "language": "Język",
+    "languageAuto": "Domyślny systemu",
+    "languageHint": "Nowe języki dodaje się jako pliki w folderze locales",
+    "darkMode": "Ciemny motyw",
+    "darkModeHint": "Używaj ciemnej palety kolorów",
+    "downloadFolder": "Folder domyślny",
+    "change": "Zmień",
+    "downloadLimit": "Limit pobierania",
+    "uploadLimit": "Limit wysyłania",
+    "limitHint": "0 — bez limitu",
+    "closeToTray": "Minimalizuj do zasobnika przy zamykaniu",
+    "closeToTrayHint": "Udostępnianie trwa w tle; wyjście przez ikonę w zasobniku",
+    "startWithWindows": "Uruchamiaj razem z Windows",
+    "startWithWindowsHint": "Peerly uruchamia się zminimalizowany i dalej udostępnia",
+    "notifications": "Powiadomienia",
+    "notificationsHint": "Powiadamiaj o ukończonych pobieraniach",
+    "magnet": "Linki magnet",
+    "magnetIsDefault": "Peerly otwiera linki magnet z przeglądarki",
+    "magnetOffer": "Otwieraj linki magnet z przeglądarki w Peerly",
+    "default": "Domyślny",
+    "makeDefault": "Ustaw jako domyślny",
+    "maxActiveDownloads": "Aktywne pobierania",
+    "maxActiveDownloadsHint": "Pozostałe czekają w kolejce. 0 — bez limitu",
+    "ratioLimit": "Zatrzymaj przy ratio",
+    "ratioLimitHint": "Gdy torrent wyśle tyle, ile podano",
+    "seedTimeLimit": "Zatrzymaj po udostępnianiu przez",
+    "seedTimeLimitHint": "Liczone od zakończenia pobierania",
+    "limitAction": "Po osiągnięciu limitu",
+    "limitActionHint": "Dotyczy obu limitów",
+    "limitActions": {
+      "pause": "Zatrzymaj udostępnianie",
+      "remove": "Usuń torrent (zachowaj pliki)"
+    },
+    "port": "Port połączeń przychodzących",
+    "portHint": "Przekieruj go na routerze, aby inni partnerzy mogli się z tobą łączyć",
+    "portBusy": "Port jest zajęty przez inny program — używany jest {port}",
+    "maxConns": "Maksymalna liczba połączeń",
+    "maxConnsHint": "Łączna liczba połączeń z partnerami",
+    "dht": "DHT",
+    "dhtHint": "Szukaj partnerów bez trackerów",
+    "pex": "Wymiana partnerów (PEX)",
+    "pexHint": "Partnerzy przekazują sobie informacje o innych uczestnikach",
+    "lsd": "Wykrywanie w sieci lokalnej",
+    "lsdHint": "Szukaj partnerów w sieci domowej",
+    "units": {
+      "kbps": "KB/s",
+      "min": "min"
+    },
+    "startMinimized": "Uruchamiaj zminimalizowany",
+    "startMinimizedHint": "Okno nie otwiera się przy starcie — Peerly działa w zasobniku",
+    "incompleteEnabled": "Folder na niepełne pobierania",
+    "incompleteHint": "Nieukończone pliki leżą tutaj i po zakończeniu trafiają do folderu pobierania",
+    "watchFolder": "Obserwowany folder",
+    "watchFolderHint": "Każdy plik .torrent, który pojawi się w folderze, zostanie dodany automatycznie",
+    "showAddDialog": "Pokazuj okno dodawania",
+    "showAddDialogHint": "Dla plików .torrent i linków magnet z Windows i przeglądarki; inaczej dodawaj od razu",
+    "addPaused": "Dodawaj wstrzymane",
+    "addPausedHint": "Nowe torrenty nie startują, dopóki ich nie wznowisz",
+    "deleteTorrentAfterAdd": "Usuwaj .torrent po dodaniu",
+    "deleteTorrentAfterAddHint": "Peerly przechowuje własną kopię, oryginalny plik nie jest potrzebny",
+    "confirmRemoval": "Potwierdzaj usuwanie",
+    "confirmRemovalHint": "Bez potwierdzenia zadanie jest usuwane, a pliki zostają na dysku",
+    "altSpeedEnabled": "Używaj alternatywnych limitów",
+    "altSpeedHint": "Druga para limitów prędkości — np. żeby torrenty nie przeszkadzały w ciągu dnia",
+    "altSpeedActive": "Alternatywne limity są teraz aktywne",
+    "altDownloadLimit": "Pobieranie",
+    "altUploadLimit": "Wysyłanie",
+    "ipFilter": "Filtr IP",
+    "ipFilterHint": "Plik z listą adresów do zablokowania (formaty P2P i eMule)",
+    "ratioLimitEnabled": "Limit ratio",
+    "seedTimeLimitEnabled": "Limit czasu udostępniania",
+    "off": "Wyłączone",
+    "choose": "Wybierz",
+    "turnOff": "Wyłącz",
+    "about": {
+      "version": "Wersja Peerly",
+      "versionLine": "Wersja {version}",
+      "tagline": "Klient BitTorrent na komputer oparty na WebTorrent: pobieranie i udostępnianie plików .torrent oraz linków magnet.",
+      "copy": "Kopiuj informacje",
+      "copied": "Skopiowano do schowka",
+      "details": "Informacje o kompilacji",
+      "dataFolder": "Folder danych",
+      "open": "Otwórz"
+    },
+    "schedule": {
+      "enabled": "Działaj według harmonogramu",
+      "enabledHint": "Dla każdej godziny tygodnia: pełna prędkość, ograniczenie, tylko udostępnianie lub pauza",
+      "now": "Teraz obowiązuje: {mode}",
+      "modes": {
+        "full": "Pełna prędkość",
+        "limited": "Ograniczenie",
+        "seed": "Tylko udostępnianie",
+        "off": "Wyłączone"
+      },
+      "modeHints": {
+        "full": "Zwykłe limity z karty „Prędkość”",
+        "limited": "Alternatywne limity — ustawiane poniżej",
+        "seed": "Pobierania czekają, ukończone torrenty są udostępniane",
+        "off": "Wszystkie torrenty są zatrzymane"
+      },
+      "brush": "Tryb do malowania",
+      "gridHint": "Wybierz tryb i zamaluj godziny kliknięciem lub przeciągnięciem. Kliknięcie dnia lub godziny maluje cały wiersz lub kolumnę.",
+      "cell": "{day}, {from}–{to}: {mode}",
+      "hours": "{count} godz.",
+      "clear": "Wyczyść wszystko",
+      "limitsTitle": "Limity w trybie „Ograniczenie”"
+    }
+  },
+  "toast": {
+    "magnetCopied": "Skopiowano link magnet.",
+    "removedWithFiles": "Zadanie i pliki usunięte.",
+    "removedKeptFiles": "Zadanie usunięte, pliki zostały na dysku.",
+    "magnetDefaultOk": "Peerly domyślnie otwiera teraz linki magnet.",
+    "magnetDefaultFailed": "Windows nie pozwolił zmienić programu obsługi — wybierz Peerly w „Aplikacjach domyślnych”.",
+    "recheckStarted": "Rozpoczęto ponowne sprawdzanie.",
+    "moved": "Pliki przeniesione.",
+    "trackersAdded": "Trackery dodane."
+  },
+  "tray": {
+    "open": "Otwórz Peerly",
+    "pauseAll": "Wstrzymaj wszystkie",
+    "resumeAll": "Wznów wszystkie",
+    "quit": "Zakończ"
+  },
+  "dialogs": {
+    "pickTorrent": "Wybierz plik torrent",
+    "pickSeedFile": "Wybierz plik do udostępnienia",
+    "pickSeedFolder": "Wybierz folder do udostępnienia",
+    "pickDownloadFolder": "Wybierz folder pobierania",
+    "saveTorrent": "Zapisz plik torrent",
+    "torrentFiles": "Pliki torrent",
+    "moveTo": "Dokąd przenieść pliki",
+    "ipFilterFiles": "Listy filtra IP"
+  },
+  "notifications": {
+    "completedTitle": "Pobieranie ukończone",
+    "completedBody": "{name} — pliki są gotowe i udostępniane."
+  },
+  "errors": {
+    "unknown": "Nieznany błąd",
+    "desktopOnly": "Dostępne w zainstalowanej aplikacji.",
+    "taskNotFound": "Nie znaleziono zadania.",
+    "magnetUnavailable": "Link magnet nie jest jeszcze dostępny.",
+    "torrentFileNotReady": "Plik torrent nie jest jeszcze gotowy — poczekaj na metadane.",
+    "invalidPath": "Nieprawidłowa ścieżka.",
+    "fileNotDownloaded": "Plik nie został jeszcze pobrany.",
+    "duplicateTorrent": "„{name}” jest już na liście.",
+    "seedSourceMissing": "Nie wybrano pliku ani folderu do udostępnienia.",
+    "seedSourceNotFound": "Nie znaleziono wybranego pliku lub folderu.",
+    "alreadySeeding": "Te pliki są już udostępniane.",
+    "seedFailed": "Nie udało się utworzyć torrenta: {reason}",
+    "noTorrentData": "Brak danych do uruchomienia torrenta.",
+    "sourceMissing": "Nie podano torrenta ani linku magnet.",
+    "invalidMagnet": "Nie rozpoznano linku magnet.",
+    "torrentFileNotFound": "Nie znaleziono pliku .torrent.",
+    "invalidTorrentFile": "Plik jest uszkodzony lub nie jest torrentem.",
+    "moveTargetExists": "„{path}” już istnieje w folderze docelowym.",
+    "moveFailed": "Nie udało się przenieść plików: {reason}"
+  },
+  "trackersModal": {
+    "title": "Dodaj trackery",
+    "hint": "Adresy trackerów dla „{name}”, po jednym w wierszu."
+  },
+  "chart": {
+    "title": "Prędkość",
+    "download": "Pobieranie",
+    "upload": "Wysyłanie",
+    "now": "teraz",
+    "ago": "{minutes} min temu",
+    "secondsAgo": "{seconds} s temu",
+    "aria": "Wykres prędkości z ostatnich {minutes} min. Teraz: pobieranie {down}, wysyłanie {up}"
+  },
+  "sidebar": {
+    "altSpeedOn": "Alternatywna prędkość",
+    "altSpeedOff": "Normalna prędkość"
+  }
+}
