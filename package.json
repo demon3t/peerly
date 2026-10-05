@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "author": "Peerly",
+  "license": "MIT",
   "description": "Красивый desktop BitTorrent-клиент на WebTorrent: скачивание и раздача .torrent и magnet.",
   "homepage": "https://github.com/demon3t/peerly",
   "repository": {

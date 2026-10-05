@@ -140,3 +140,33 @@ On the first start Peerly imports the data of the old "Northstar" profile (`%APP
 - WebTorrent has no per-torrent speed limits and no protocol encryption, so Peerly doesn't offer them.
 
 **Share ratio.** Ratio = uploaded ÷ bytes received from peers. Data that was already on disk does not count as downloaded, and duplicate or corrupt blocks are reported separately as "wasted" (like qBittorrent). For your own seeds the content size is used as the denominator.
+
+## Code signing policy
+
+Windows installers will be signed with free code signing provided by [SignPath.io](https://about.signpath.io/),
+certificate by [SignPath Foundation](https://signpath.org/).
+
+- Installers are built from this repository's source by [GitHub Actions](.github/workflows/release.yml) on every push to `main`.
+- Only binaries built from this repository are signed. Every signing request is approved manually.
+
+**Team roles**
+
+- Committers and reviewers: [demon3t](https://github.com/demon3t)
+- Approvers: [demon3t](https://github.com/demon3t)
+
+Contributions from people outside this list are accepted only through pull requests reviewed by a committer.
+
+## Privacy policy
+
+This program will not transfer any information to other networked systems unless specifically requested
+by the user or the person installing or operating it.
+
+Peerly is a BitTorrent client: when you add a torrent or share files, it connects to the trackers listed in
+that torrent (plus a few public ones), to the DHT network and to other peers in order to download and upload
+that torrent's data. This is how BitTorrent works and other peers can see your IP address while a torrent is active.
+If you set an IP filter URL, Peerly downloads that list. There is no telemetry, analytics or update check.
+Settings and the torrent list are stored only on your computer.
+
+## License
+
+[MIT](LICENSE)
