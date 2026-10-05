@@ -1,0 +1,132 @@
+/* ---------- window size adaptation ---------- */
+/* Header search shrinks before it wraps under the title. */
+.page-header {
+  flex-wrap: wrap;
+}
+.search-field {
+  flex: 0 1 260px;
+  min-width: 180px;
+}
+.details-panel {
+  max-width: calc(100vw - 72px);
+}
+
+/* Wide windows: the table breathes, the reading pages stay readable. */
+@media (min-width: 1800px) {
+  .main-content {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .search-field {
+    flex-basis: 340px;
+  }
+}
+
+@media (max-width: 1260px) {
+  .sidebar {
+    width: 196px;
+  }
+  .main-content {
+    margin-left: 196px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .stat-copy strong {
+    font-size: 18px;
+  }
+  .ratio-cell small {
+    display: none;
+  }
+}
+
+/* Compact sidebar: icons only, labels move into tooltips. */
+@media (max-width: 920px) {
+  .sidebar {
+    width: 64px;
+    padding: 12px 10px;
+  }
+  .main-content {
+    margin-left: 64px;
+    padding: 18px 16px 28px;
+  }
+  .sidebar-add {
+    padding: 0;
+  }
+  .sidebar-add span,
+  .nav-item span,
+  .nav-item b,
+  .alt-speed span,
+  .sidebar-status .status-line span:not(.status-dot),
+  .sidebar-disk {
+    display: none;
+  }
+  .nav-item,
+  .alt-speed {
+    justify-content: center;
+    padding: 0;
+  }
+  .sidebar-status {
+    justify-items: center;
+    padding: 12px 0 0;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Torrent list: ratio moves out (it is in the summary bar and details). */
+  .torrent-table:not(.ratio-table) th:nth-child(4),
+  .torrent-table:not(.ratio-table) td:nth-child(4) {
+    display: none;
+  }
+  .torrent-table th:nth-child(1) {
+    width: auto;
+  }
+  .torrent-table th:nth-child(2) {
+    width: 30%;
+  }
+  .torrent-table th:nth-child(3) {
+    width: 108px;
+  }
+  .ratio-table th:nth-child(2),
+  .ratio-table th:nth-child(3) {
+    width: 88px;
+  }
+  .ratio-table th:nth-child(4) {
+    width: 30%;
+  }
+}
+
+/* Seven settings tabs no longer fit in one row: two rows. */
+@media (max-width: 1000px) {
+  .settings-tabs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .main-content {
+    padding: 14px 12px 24px;
+  }
+  .search-field {
+    flex: 1 1 100%;
+    margin-left: 0;
+  }
+  .torrent-table th,
+  .torrent-table td {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  /* Speed is in the summary bar; the row keeps name, progress and actions. */
+  .torrent-table:not(.ratio-table) th:nth-child(3),
+  .torrent-table:not(.ratio-table) td:nth-child(3) {
+    display: none;
+  }
+  .torrent-table th:nth-child(2) {
+    width: 38%;
+  }
+  .ratio-table th:nth-child(3),
+  .ratio-table td:nth-child(3) {
+    display: none;
+  }
+}

@@ -1,0 +1,125 @@
+/* ---------- speed chart (components/SpeedChart.jsx) ---------- */
+.speed-chart {
+  position: relative;
+  width: 100%;
+}
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.chart-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.chart-legend-item b {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.line-key {
+  display: inline-block;
+  width: 14px;
+  height: 2px;
+  border-radius: 2px;
+}
+.line-key.series-down {
+  background: var(--series-down);
+}
+.line-key.series-up {
+  background: var(--series-up);
+}
+.chart-svg {
+  display: block;
+  overflow: visible;
+  touch-action: none;
+}
+.chart-grid {
+  stroke: var(--line);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+.chart-axis {
+  fill: var(--muted);
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+}
+.chart-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.chart-area {
+  opacity: 0.1;
+}
+.series-down .chart-line {
+  stroke: var(--series-down);
+}
+.series-down .chart-area,
+.chart-dot.series-down {
+  fill: var(--series-down);
+}
+.series-up .chart-line {
+  stroke: var(--series-up);
+}
+.series-up .chart-area,
+.chart-dot.series-up {
+  fill: var(--series-up);
+}
+.chart-dot {
+  stroke: var(--paper);
+  stroke-width: 2;
+}
+.chart-crosshair {
+  stroke: var(--muted);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+.chart-tooltip {
+  position: absolute;
+  z-index: 3;
+  display: grid;
+  gap: 5px;
+  width: 160px;
+  padding: 9px 11px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-pop);
+  pointer-events: none;
+}
+.chart-tooltip small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.chart-tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.chart-tooltip-row b {
+  color: var(--ink);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.chart-tooltip-row span {
+  color: var(--muted);
+}
+.chart-card {
+  margin-bottom: 18px;
+  padding: 16px 18px 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+.chart-card h3 {
+  margin: 0 0 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+}

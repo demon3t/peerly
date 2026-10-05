@@ -1,0 +1,369 @@
+/* ---------- subpages ---------- */
+.subpage {
+  max-width: 1040px;
+}
+.list-title {
+  margin: 26px 0 12px;
+  color: var(--ink-2);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.subpage .page-header + .list-title {
+  margin-top: 4px;
+}
+.settings-list {
+  container-type: inline-size;
+  padding: 0 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 72px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.settings-row:last-child {
+  border-bottom: 0;
+}
+.settings-text {
+  min-width: 0;
+}
+.settings-text strong,
+.settings-text > span {
+  display: block;
+}
+.settings-text strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+.settings-text > span {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 11.5px;
+}
+.toggle {
+  position: relative;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 22px;
+  padding: 2px;
+  background: var(--track);
+  border: 0;
+  border-radius: 99px;
+  transition: 0.18s ease;
+}
+.toggle span {
+  display: block;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: 0.18s ease;
+}
+.toggle.checked {
+  background: #0e6a66;
+}
+.toggle.checked span {
+  transform: translateX(18px);
+}
+.settings-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  color: var(--green);
+  background: var(--green-bg);
+  border-radius: var(--r-sm);
+  font-size: 11px;
+  font-weight: 700;
+}
+.setting-pair {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.settings-text > span.warning {
+  color: var(--amber);
+}
+
+/* ---------- settings controls ---------- */
+.settings-tabs {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  margin-bottom: 18px;
+}
+.settings-tabs .tab {
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+/* Narrow list: wide controls drop under their label; toggles and short values stay on the right. */
+@container (max-width: 560px) {
+  .settings-row:not(:has(> .toggle, > .about-value)) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .settings-row:not(:has(> .toggle, > .about-value)) > :not(.settings-text) {
+    align-self: flex-start;
+    max-width: 100%;
+  }
+  .settings-row > .select {
+    align-self: stretch;
+    min-width: 0;
+  }
+  .settings-row .path-setting {
+    align-self: stretch;
+  }
+  .settings-row .path-value {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+  }
+}
+
+/* ---------- about ---------- */
+.about-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 18px;
+  padding: 22px 20px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+}
+.about-mark {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  background: var(--teal);
+  border-radius: 14px;
+}
+.about-title {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+.about-title h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+.about-title > span {
+  display: block;
+  margin-top: 3px;
+  color: var(--teal);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.about-title p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.about-actions {
+  display: grid;
+  justify-items: end;
+  gap: 6px;
+}
+.about-actions small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.settings-row:has(> .about-value) {
+  min-height: 52px;
+}
+.about-value {
+  color: var(--ink-2);
+  font-size: 12.5px;
+  text-align: right;
+}
+.settings-text .mono {
+  overflow-wrap: anywhere;
+}
+.path-setting {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 460px;
+}
+.path-value {
+  overflow: hidden;
+  max-width: 260px;
+  color: var(--ink-2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.path-value.off {
+  color: var(--muted);
+  font-size: 12px;
+}
+.path-setting .icon-button {
+  width: 36px;
+  height: 36px;
+}
+
+/* ---------- weekly schedule ---------- */
+.schedule-card {
+  container-type: inline-size;
+  margin-top: 14px;
+  padding: 18px 20px 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  transition: opacity 0.18s ease;
+}
+.schedule-card.off {
+  opacity: 0.55;
+}
+.mode-full {
+  --mode: var(--mint);
+}
+.mode-limited {
+  --mode: var(--amber);
+}
+.mode-seed {
+  --mode: var(--blue);
+}
+.mode-off {
+  --mode: var(--red);
+}
+.schedule-brushes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.schedule-brush {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 0 12px;
+  color: var(--ink-2);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  font-size: 12px;
+  font-weight: 600;
+}
+.schedule-brush:hover {
+  border-color: var(--mint-line);
+}
+.schedule-brush.active {
+  color: var(--ink);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 1px var(--teal);
+}
+.schedule-swatch {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  background: var(--mode);
+  border: 1px solid color-mix(in srgb, var(--mode) 70%, var(--ink) 30%);
+  border-radius: 3px;
+}
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 34px repeat(24, minmax(0, 1fr));
+  gap: 2px;
+  user-select: none;
+  touch-action: none;
+}
+.schedule-hour,
+.schedule-day {
+  padding: 0;
+  color: var(--soft);
+  background: transparent;
+  border: 0;
+  border-radius: var(--r-sm);
+  font-size: 10px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.schedule-hour {
+  height: 18px;
+}
+.schedule-day {
+  padding-right: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: left;
+  text-transform: capitalize;
+}
+.schedule-hour:hover,
+.schedule-day:hover {
+  color: var(--teal);
+  background: var(--teal-soft);
+}
+.schedule-cell {
+  height: 24px;
+  background: var(--mode);
+  border-radius: 3px;
+  cursor: crosshair;
+}
+.schedule-cell:hover {
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.schedule-cell.now {
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.schedule-caption {
+  min-height: 18px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.schedule-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line-soft);
+}
+.schedule-totals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  color: var(--ink-2);
+  font-size: 12px;
+  font-weight: 600;
+}
+.schedule-totals > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+/* Narrow card: every third hour is labelled, cells get a little shorter. */
+@container (max-width: 560px) {
+  .schedule-hour:not(:nth-child(3n + 2)) {
+    color: transparent;
+  }
+  .schedule-cell {
+    height: 20px;
+  }
+  .schedule-grid {
+    grid-template-columns: 28px repeat(24, minmax(0, 1fr));
+    gap: 1px;
+  }
+}

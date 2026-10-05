@@ -1,0 +1,395 @@
+{
+  "meta": {
+    "name": "Русский",
+    "locale": "ru-RU"
+  },
+  "common": {
+    "add": "Добавить",
+    "cancel": "Отмена",
+    "close": "Закрыть",
+    "delete": "Удалить",
+    "loading": "Загрузка…"
+  },
+  "nav": {
+    "all": "Все торренты",
+    "active": "Загрузки",
+    "seeding": "Раздача",
+    "paused": "На паузе",
+    "stats": "Статистика",
+    "settings": "Настройки",
+    "completed": "Завершённые"
+  },
+  "network": {
+    "online": "В сети",
+    "connecting": "Подключение…",
+    "freeSpace": "Свободно {size}"
+  },
+  "status": {
+    "downloading": "Скачивается",
+    "metadata": "Метаданные",
+    "checking": "Проверка",
+    "seeding": "Раздаётся",
+    "paused": "Пауза",
+    "error": "Ошибка",
+    "queued": "В очереди",
+    "completed": "Завершён",
+    "scheduled": "По расписанию"
+  },
+  "actions": {
+    "pause": "Пауза",
+    "resume": "Продолжить"
+  },
+  "dashboard": {
+    "search": "Поиск",
+    "clearSearch": "Очистить поиск",
+    "demoNote": "Предпросмотр в браузере — показаны демонстрационные данные.",
+    "emptyTitle": "Здесь пока пусто",
+    "emptyText": "Добавьте .torrent-файл или magnet-ссылку — или просто перетащите файл в окно.",
+    "addMagnet": "Magnet-ссылка",
+    "addTorrent": "Добавить торрент",
+    "notFoundTitle": "Ничего не найдено",
+    "notFoundText": "Попробуйте изменить запрос или раздел."
+  },
+  "table": {
+    "name": "Название",
+    "progress": "Прогресс",
+    "speed": "Скорость",
+    "ratio": "Рейтинг",
+    "actions": "Действия",
+    "remaining": "осталось {time}",
+    "ofSize": "{done} из {total}",
+    "sizeUnknown": "размер уточняется",
+    "fetchingMetadata": "Получение метаданных…"
+  },
+  "ratio": {
+    "hint": "Рейтинг = отдано ÷ скачано. 1.00 и выше — вы отдали не меньше, чем получили.",
+    "uploaded": "Отдано",
+    "downloaded": "Скачано"
+  },
+  "time": {
+    "seconds": "{n} с",
+    "minutes": "{n} мин",
+    "hoursMinutes": "{h} ч {m} мин",
+    "daysHours": "{d} д {h} ч"
+  },
+  "menu": {
+    "details": "Подробнее",
+    "openFolder": "Открыть папку",
+    "copyMagnet": "Скопировать magnet",
+    "saveTorrent": "Сохранить .torrent",
+    "remove": "Удалить…",
+    "recheck": "Проверить данные",
+    "move": "Переместить…",
+    "addTrackers": "Добавить трекеры…"
+  },
+  "details": {
+    "label": "Подробности торрента",
+    "download": "Скачивание",
+    "upload": "Отдача",
+    "peers": "Пиры",
+    "remaining": "Осталось",
+    "folder": "Папка",
+    "tabs": {
+      "files": "Файлы",
+      "peers": "Пиры",
+      "info": "Инфо",
+      "trackers": "Трекеры",
+      "speed": "Скорость"
+    },
+    "noFiles": "Список файлов появится после получения метаданных.",
+    "openFileHint": "Двойной клик — открыть файл",
+    "pausedNoPeers": "Торрент на паузе.",
+    "searchingPeers": "Поиск пиров через DHT и трекеры…",
+    "info": {
+      "size": "Размер",
+      "files": "Файлов",
+      "onDisk": "На диске",
+      "type": "Тип",
+      "private": "Приватный торрент (без DHT/PEX)",
+      "added": "Добавлен",
+      "completed": "Завершён",
+      "folder": "Папка",
+      "infoHash": "Info hash",
+      "selected": "{selected} из {total}",
+      "wasted": "Потеряно",
+      "seedingTime": "Время раздачи"
+    },
+    "seedingTime": "Раздаётся",
+    "unknownClient": "Неизвестный клиент",
+    "peerProgress": "Сколько уже есть у пира",
+    "priority": {
+      "label": "Приоритет",
+      "skip": "Не скачивать",
+      "normal": "Обычный",
+      "high": "Высокий"
+    },
+    "trackers": {
+      "dht": "DHT",
+      "pex": "PEX (обмен пирами)",
+      "lsd": "Поиск в локальной сети",
+      "on": "Включено",
+      "off": "Выключено",
+      "private": "Отключено: приватный торрент",
+      "add": "Добавить трекеры"
+    }
+  },
+  "add": {
+    "titleDownload": "Добавить торрент",
+    "titleSeed": "Раздать файл или папку",
+    "modeTorrent": ".torrent",
+    "modeMagnet": "Magnet",
+    "modeSeed": "Раздача",
+    "magnetLabel": "Magnet-ссылка",
+    "magnetPlaceholder": "magnet:?xt=urn:btih:…  (можно несколько, каждую с новой строки)",
+    "dropTorrent": "Перетащите .torrent сюда",
+    "dropTorrentHint": "или выберите один или несколько файлов",
+    "dropSeed": "Перетащите файл или папку сюда",
+    "dropSeedHint": "Peerly создаст стандартный .torrent, совместимый с любым клиентом",
+    "filesSelected": "Выбрано файлов: {count}",
+    "pickTorrent": "Выбрать .torrent",
+    "pickOther": "Выбрать другой",
+    "pickFile": "Файл",
+    "pickFolder": "Папка",
+    "saveFolder": "Папка загрузки",
+    "chooseFolder": "Выбрать папку",
+    "previewNoName": "Имя появится после получения метаданных",
+    "previewSizeUnknown": "размер станет известен после подключения",
+    "previewInvalid": "Не похоже на корректный торрент.",
+    "fileCount": {
+      "one": "{count} файл",
+      "few": "{count} файла",
+      "many": "{count} файлов",
+      "other": "{count} файла"
+    },
+    "adding": "Добавление…",
+    "hashing": "Хеширование…",
+    "startDownload": "Начать загрузку",
+    "createSeed": "Создать раздачу",
+    "needTorrent": "Выберите .torrent-файл.",
+    "needMagnet": "Вставьте magnet-ссылку (начинается с magnet:?).",
+    "needSeedSource": "Выберите файл или папку для раздачи.",
+    "doneOne": "Торрент добавлен — загрузка началась.",
+    "doneMany": "Добавлено торрентов: {count}.",
+    "doneSeed": "Раздача создана. Поделитесь .torrent-файлом или magnet-ссылкой из меню задачи.",
+    "needFiles": "Выберите хотя бы один файл.",
+    "startPaused": "Не начинать загрузку сразу",
+    "filesToDownload": "Файлы для загрузки",
+    "selectedSize": "{selected} из {total}",
+    "advanced": "Дополнительно",
+    "private": "Приватный торрент",
+    "privateHint": "Только для закрытых трекеров: без DHT и обмена пирами",
+    "trackers": "Трекеры",
+    "trackersPlaceholder": "Адреса трекеров, по одному на строку",
+    "comment": "Комментарий"
+  },
+  "remove": {
+    "title": "Удалить задачу?",
+    "text": "«{name}» исчезнет из списка, раздача прекратится.",
+    "deleteFiles": "Удалить также скачанные файлы с диска",
+    "seedHint": "Ваши исходные файлы останутся на месте."
+  },
+  "drop": {
+    "title": "Отпустите, чтобы добавить",
+    "zoneTitle": "Перетащите сюда, чтобы добавить в загрузки",
+    "hint": ".torrent-файлы будут скачаны, остальные файлы и папки — розданы"
+  },
+  "stats": {
+    "title": "Статистика",
+    "downloaded": "Скачано за всё время",
+    "uploaded": "Отдано за всё время",
+    "ratio": "Общий рейтинг",
+    "table": {
+      "torrent": "Торрент"
+    }
+  },
+  "settings": {
+    "title": "Настройки",
+    "sections": {
+      "general": "Основные",
+      "downloads": "Загрузки",
+      "seeding": "Раздача",
+      "connection": "Соединение",
+      "speed": "Скорость",
+      "schedule": "Расписание",
+      "adding": "Добавление торрентов",
+      "altSpeed": "Альтернативные лимиты",
+      "seedingLimits": "Ограничения раздачи",
+      "about": "О приложении"
+    },
+    "language": "Язык",
+    "languageAuto": "Как в системе",
+    "languageHint": "Новые языки добавляются файлом в папке locales",
+    "darkMode": "Тёмная тема",
+    "darkModeHint": "Использовать тёмную палитру интерфейса",
+    "downloadFolder": "Папка по умолчанию",
+    "change": "Изменить",
+    "downloadLimit": "Ограничение скачивания",
+    "uploadLimit": "Ограничение отдачи",
+    "limitHint": "0 — без ограничений",
+    "closeToTray": "Сворачивать в трей при закрытии",
+    "closeToTrayHint": "Раздача продолжится в фоне; выход — через значок в трее",
+    "startWithWindows": "Запускать вместе с Windows",
+    "startWithWindowsHint": "Peerly стартует свёрнутым и продолжает раздачи",
+    "notifications": "Уведомления",
+    "notificationsHint": "Сообщать о завершённых загрузках",
+    "magnet": "Magnet-ссылки",
+    "magnetIsDefault": "Peerly открывает magnet-ссылки из браузера",
+    "magnetOffer": "Открывать magnet-ссылки из браузера в Peerly",
+    "default": "По умолчанию",
+    "makeDefault": "Сделать основным",
+    "maxActiveDownloads": "Одновременных загрузок",
+    "maxActiveDownloadsHint": "Остальные ждут в очереди. 0 — без ограничений",
+    "ratioLimit": "Остановить при рейтинге",
+    "ratioLimitHint": "Когда раздача отдаст столько, сколько указано",
+    "seedTimeLimit": "Остановить после раздачи в течение",
+    "seedTimeLimitHint": "Время считается после завершения загрузки",
+    "limitAction": "Что делать при достижении",
+    "limitActionHint": "Применяется к обоим ограничениям",
+    "limitActions": {
+      "pause": "Остановить раздачу",
+      "remove": "Удалить торрент (файлы останутся)"
+    },
+    "port": "Порт для входящих соединений",
+    "portHint": "Откройте его на роутере, чтобы к вам могли подключаться другие пиры",
+    "portBusy": "Порт занят другой программой — сейчас используется {port}",
+    "maxConns": "Максимум соединений",
+    "maxConnsHint": "Общее число подключений к пирам",
+    "dht": "DHT",
+    "dhtHint": "Поиск пиров без трекеров",
+    "pex": "Обмен пирами (PEX)",
+    "pexHint": "Пиры рассказывают друг другу о других участниках",
+    "lsd": "Поиск в локальной сети",
+    "lsdHint": "Находить пиров в вашей домашней сети",
+    "units": {
+      "kbps": "KB/s",
+      "min": "мин"
+    },
+    "startMinimized": "Запускать свёрнутым",
+    "startMinimizedHint": "Окно не открывается при запуске — Peerly работает в трее",
+    "incompleteEnabled": "Папка для незавершённых",
+    "incompleteHint": "Недокачанные файлы лежат здесь и переносятся в папку загрузок после завершения",
+    "watchFolder": "Отслеживаемая папка",
+    "watchFolderHint": "Каждый .torrent, появившийся в папке, добавляется автоматически",
+    "showAddDialog": "Показывать окно добавления",
+    "showAddDialogHint": "Для .torrent и magnet-ссылок из Windows и браузера; иначе добавлять сразу",
+    "addPaused": "Добавлять на паузе",
+    "addPausedHint": "Новые торренты не начинают загрузку, пока вы их не запустите",
+    "deleteTorrentAfterAdd": "Удалять .torrent после добавления",
+    "deleteTorrentAfterAddHint": "Peerly хранит свою копию, исходный файл больше не нужен",
+    "confirmRemoval": "Подтверждать удаление",
+    "confirmRemovalHint": "Без подтверждения задача удаляется, а файлы остаются на диске",
+    "altSpeedEnabled": "Включить альтернативные лимиты",
+    "altSpeedHint": "Вторая пара ограничений скорости — например, чтобы торренты не мешали днём",
+    "altSpeedActive": "Сейчас действуют альтернативные лимиты",
+    "altDownloadLimit": "Скачивание",
+    "altUploadLimit": "Отдача",
+    "ipFilter": "IP-фильтр",
+    "ipFilterHint": "Файл со списком блокируемых адресов (форматы P2P и eMule)",
+    "ratioLimitEnabled": "Ограничение по рейтингу",
+    "seedTimeLimitEnabled": "Ограничение по времени",
+    "off": "Выключено",
+    "choose": "Выбрать",
+    "turnOff": "Выключить",
+    "about": {
+      "version": "Версия Peerly",
+      "versionLine": "Версия {version}",
+      "tagline": "Desktop BitTorrent-клиент на WebTorrent: скачивание и раздача .torrent и magnet-ссылок.",
+      "copy": "Скопировать сведения",
+      "copied": "Скопировано в буфер обмена",
+      "details": "Сведения о сборке",
+      "dataFolder": "Папка данных",
+      "open": "Открыть"
+    },
+    "schedule": {
+      "enabled": "Работать по расписанию",
+      "enabledHint": "Для каждого часа недели: полная скорость, ограничение, только раздача или пауза",
+      "now": "Сейчас действует: {mode}",
+      "modes": {
+        "full": "Полная скорость",
+        "limited": "Ограничение",
+        "seed": "Только раздача",
+        "off": "Выключено"
+      },
+      "modeHints": {
+        "full": "Обычные лимиты из вкладки «Скорость»",
+        "limited": "Альтернативные лимиты — задаются ниже",
+        "seed": "Загрузки ждут, завершённые торренты раздаются",
+        "off": "Все торренты остановлены"
+      },
+      "brush": "Режим для закрашивания",
+      "gridHint": "Выберите режим и закрасьте часы щелчком или протягиванием. Щелчок по дню или часу закрашивает всю строку или столбец.",
+      "cell": "{day}, {from}–{to}: {mode}",
+      "hours": "{count} ч",
+      "clear": "Сбросить всё",
+      "limitsTitle": "Лимиты режима «Ограничение»"
+    }
+  },
+  "toast": {
+    "magnetCopied": "Magnet-ссылка скопирована.",
+    "removedWithFiles": "Задача и файлы удалены.",
+    "removedKeptFiles": "Задача удалена, файлы остались на диске.",
+    "magnetDefaultOk": "Peerly открывает magnet-ссылки по умолчанию.",
+    "magnetDefaultFailed": "Windows не позволил изменить обработчик — выберите Peerly в «Приложения по умолчанию».",
+    "recheckStarted": "Проверка данных запущена.",
+    "moved": "Файлы перемещены.",
+    "trackersAdded": "Трекеры добавлены."
+  },
+  "tray": {
+    "open": "Открыть Peerly",
+    "pauseAll": "Приостановить все",
+    "resumeAll": "Возобновить все",
+    "quit": "Выход"
+  },
+  "dialogs": {
+    "pickTorrent": "Выберите торрент-файл",
+    "pickSeedFile": "Выберите файл для раздачи",
+    "pickSeedFolder": "Выберите папку для раздачи",
+    "pickDownloadFolder": "Выберите папку для загрузок",
+    "saveTorrent": "Сохранить торрент-файл",
+    "torrentFiles": "Торрент-файлы",
+    "moveTo": "Куда переместить файлы",
+    "ipFilterFiles": "Списки IP-фильтра"
+  },
+  "notifications": {
+    "completedTitle": "Загрузка завершена",
+    "completedBody": "{name} — файлы готовы и раздаются."
+  },
+  "errors": {
+    "unknown": "Неизвестная ошибка",
+    "desktopOnly": "Доступно в установленном приложении.",
+    "taskNotFound": "Задача не найдена.",
+    "magnetUnavailable": "Magnet-ссылка ещё недоступна.",
+    "torrentFileNotReady": "Торрент-файл ещё не готов — дождитесь получения метаданных.",
+    "invalidPath": "Недопустимый путь.",
+    "fileNotDownloaded": "Файл ещё не скачан.",
+    "duplicateTorrent": "«{name}» уже есть в списке.",
+    "seedSourceMissing": "Не выбран файл или папка для раздачи.",
+    "seedSourceNotFound": "Выбранный файл или папка не найдены.",
+    "alreadySeeding": "Эти файлы уже раздаются.",
+    "seedFailed": "Не удалось создать раздачу: {reason}",
+    "noTorrentData": "Нет данных для запуска торрента.",
+    "sourceMissing": "Не указан торрент или magnet-ссылка.",
+    "invalidMagnet": "Не удалось распознать magnet-ссылку.",
+    "torrentFileNotFound": "Файл .torrent не найден.",
+    "invalidTorrentFile": "Файл повреждён или не является торрентом.",
+    "moveTargetExists": "В папке назначения уже есть «{path}».",
+    "moveFailed": "Не удалось переместить файлы: {reason}"
+  },
+  "trackersModal": {
+    "title": "Добавить трекеры",
+    "hint": "Адреса трекеров для «{name}», по одному на строку."
+  },
+  "chart": {
+    "title": "Скорость",
+    "download": "Загрузка",
+    "upload": "Отдача",
+    "now": "сейчас",
+    "ago": "{minutes} мин назад",
+    "secondsAgo": "{seconds} с назад",
+    "aria": "График скорости за {minutes} мин. Сейчас: загрузка {down}, отдача {up}"
+  },
+  "sidebar": {
+    "altSpeedOn": "Альтернативная скорость",
+    "altSpeedOff": "Обычная скорость"
+  }
+}

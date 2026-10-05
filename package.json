@@ -1,0 +1,117 @@
+{
+  "name": "peerly",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Peerly",
+  "description": "Красивый desktop BitTorrent-клиент на WebTorrent: скачивание и раздача .torrent и magnet.",
+  "homepage": "https://github.com/demon3t/peerly",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/demon3t/peerly.git"
+  },
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k -n vite,app \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && node scripts/dev-electron.cjs\"",
+    "build": "vite build",
+    "start": "npm run build && cross-env PEERLY_DEV_SERVER=0 electron .",
+    "preview": "vite --host 127.0.0.1",
+    "icon": "node scripts/generate-icon.mjs",
+    "dist": "npm run icon && npm run build && electron-builder --win nsis --x64",
+    "test:engine": "electron scripts/smoke-test.cjs",
+    "test:ui": "npm run build && node scripts/ui-test.cjs",
+    "check:locales": "node scripts/check-locales.mjs",
+    "test:features": "electron scripts/features-test.cjs",
+    "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"electron/**/*.{js,cjs}\" \"shared/**/*.mjs\" \"scripts/**/*.{js,cjs,mjs}\" \"locales/*.json\" vite.config.js",
+    "test:settings": "electron scripts/settings-test.cjs",
+    "dist:all": "npm run build && node scripts/package-all.mjs"
+  },
+  "build": {
+    "appId": "com.peerly.app",
+    "productName": "Peerly",
+    "asar": true,
+    "compression": "normal",
+    "npmRebuild": false,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "shared/**/*",
+      "locales/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "artifactName": "Peerly-Setup-${version}-${arch}.${ext}",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Peerly",
+      "uninstallDisplayName": "Peerly",
+      "deleteAppDataOnUninstall": false,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "include": "build/installer.nsh",
+      "runAfterFinish": true
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.png",
+      "category": "public.app-category.utilities",
+      "identity": "-",
+      "artifactName": "Peerly-${version}-${arch}.${ext}"
+    },
+    "dmg": {
+      "artifactName": "Peerly-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "build/icon.png",
+      "category": "Network",
+      "maintainer": "Peerly <noreply@github.com>",
+      "synopsis": "BitTorrent client built on WebTorrent",
+      "artifactName": "Peerly-${version}-${arch}.${ext}",
+      "mimeTypes": [
+        "application/x-bittorrent",
+        "x-scheme-handler/magnet"
+      ]
+    },
+    "fileAssociations": [
+      {
+        "ext": "torrent",
+        "name": "Peerly.Torrent",
+        "description": "Торрент-файл",
+        "icon": "build/icon.ico",
+        "role": "Editor"
+      }
+    ]
+  },
+  "dependencies": {
+    "webtorrent": "^3.0.21"
+  },
+  "devDependencies": {
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
+    "cross-env": "^10.1.0",
+    "electron": "^38.2.0",
+    "electron-builder": "^26.15.3",
+    "lucide-react": "^0.468.0",
+    "playwright": "^1.63.0",
+    "prettier": "^3.9.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "^6.0.7",
+    "wait-on": "^8.0.1"
+  }
+}

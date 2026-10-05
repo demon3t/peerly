@@ -1,0 +1,114 @@
+# Every push to main builds installers for Windows, macOS and Linux (all CPU architectures)
+# and publishes them as a GitHub release. The newest release is "latest", so the
+# download links in README.md (releases/latest/download/<file>) always point to it.
+name: Build and release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: version
+        run: echo "version=$(node -p "require('./package.json').version")-build.${{ github.run_number }}" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: version
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: win
+          - os: macos-latest
+            target: mac
+          - os: ubuntu-latest
+            target: linux
+    runs-on: ${{ matrix.os }}
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+      # No signing certificates in CI: build unsigned installers.
+      CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set build version
+        shell: bash
+        run: npm version "$VERSION" --no-git-tag-version --allow-same-version
+
+      - name: Check translations
+        run: npm run check:locales
+
+      - name: Build UI
+        run: npm run build
+
+      - name: Package installers
+        run: node scripts/package-all.mjs ${{ matrix.target }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: peerly-${{ matrix.target }}
+          path: release/upload/*
+          if-no-files-found: error
+
+  release:
+    needs: [version, build]
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: upload
+          merge-multiple: true
+
+      - name: Write release notes
+        run: |
+          base="https://github.com/${{ github.repository }}/releases/download/v$VERSION"
+          cat > notes.md <<EOF
+          Build of ${{ github.sha }} from \`main\`.
+
+          | System | Installer |
+          | --- | --- |
+          | Windows 64-bit | [Peerly-Windows-x64-Setup.exe]($base/Peerly-Windows-x64-Setup.exe) |
+          | Windows 32-bit | [Peerly-Windows-x86-32bit-Setup.exe]($base/Peerly-Windows-x86-32bit-Setup.exe) |
+          | Windows ARM64 | [Peerly-Windows-ARM64-Setup.exe]($base/Peerly-Windows-ARM64-Setup.exe) |
+          | macOS Apple Silicon (M1 and newer) | [Peerly-macOS-AppleSilicon.dmg]($base/Peerly-macOS-AppleSilicon.dmg) |
+          | macOS Intel | [Peerly-macOS-Intel.dmg]($base/Peerly-macOS-Intel.dmg) |
+          | Linux x64 | [AppImage]($base/Peerly-Linux-x64.AppImage) · [deb]($base/Peerly-Linux-x64.deb) |
+          | Linux ARM64 | [AppImage]($base/Peerly-Linux-arm64.AppImage) · [deb]($base/Peerly-Linux-arm64.deb) |
+
+          The installers are not code-signed: Windows SmartScreen may ask to confirm ("More info" → "Run anyway"),
+          and on macOS run \`xattr -cr /Applications/Peerly.app\` once after copying the app.
+          EOF
+
+      - name: Publish release
+        run: |
+          gh release create "v$VERSION" upload/* \
+            --repo "${{ github.repository }}" \
+            --target "${{ github.sha }}" \
+            --title "Peerly $VERSION" \
+            --notes-file notes.md \
+            --latest

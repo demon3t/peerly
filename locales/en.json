@@ -1,0 +1,393 @@
+{
+  "meta": {
+    "name": "English",
+    "locale": "en-US"
+  },
+  "common": {
+    "add": "Add",
+    "cancel": "Cancel",
+    "close": "Close",
+    "delete": "Delete",
+    "loading": "Loading…"
+  },
+  "nav": {
+    "all": "All torrents",
+    "active": "Downloading",
+    "seeding": "Seeding",
+    "paused": "Paused",
+    "stats": "Statistics",
+    "settings": "Settings",
+    "completed": "Completed"
+  },
+  "network": {
+    "online": "Online",
+    "connecting": "Connecting…",
+    "freeSpace": "{size} free"
+  },
+  "status": {
+    "downloading": "Downloading",
+    "metadata": "Metadata",
+    "checking": "Checking",
+    "seeding": "Seeding",
+    "paused": "Paused",
+    "error": "Error",
+    "queued": "Queued",
+    "completed": "Completed",
+    "scheduled": "Scheduled"
+  },
+  "actions": {
+    "pause": "Pause",
+    "resume": "Resume"
+  },
+  "dashboard": {
+    "search": "Search",
+    "clearSearch": "Clear search",
+    "demoNote": "Browser preview — showing demo data.",
+    "emptyTitle": "Nothing here yet",
+    "emptyText": "Add a .torrent file or a magnet link — or just drop a file into the window.",
+    "addMagnet": "Magnet link",
+    "addTorrent": "Add torrent",
+    "notFoundTitle": "Nothing found",
+    "notFoundText": "Try another search or section."
+  },
+  "table": {
+    "name": "Name",
+    "progress": "Progress",
+    "speed": "Speed",
+    "ratio": "Ratio",
+    "actions": "Actions",
+    "remaining": "{time} left",
+    "ofSize": "{done} of {total}",
+    "sizeUnknown": "size unknown",
+    "fetchingMetadata": "Fetching metadata…"
+  },
+  "ratio": {
+    "hint": "Ratio = uploaded ÷ downloaded. 1.00 or more means you gave back at least as much as you got.",
+    "uploaded": "Uploaded",
+    "downloaded": "Downloaded"
+  },
+  "time": {
+    "seconds": "{n} s",
+    "minutes": "{n} min",
+    "hoursMinutes": "{h} h {m} min",
+    "daysHours": "{d} d {h} h"
+  },
+  "menu": {
+    "details": "Details",
+    "openFolder": "Open folder",
+    "copyMagnet": "Copy magnet link",
+    "saveTorrent": "Save .torrent",
+    "remove": "Remove…",
+    "recheck": "Force recheck",
+    "move": "Move…",
+    "addTrackers": "Add trackers…"
+  },
+  "details": {
+    "label": "Torrent details",
+    "download": "Download",
+    "upload": "Upload",
+    "peers": "Peers",
+    "remaining": "Time left",
+    "folder": "Folder",
+    "tabs": {
+      "files": "Files",
+      "peers": "Peers",
+      "info": "Info",
+      "trackers": "Trackers",
+      "speed": "Speed"
+    },
+    "noFiles": "The file list appears once metadata is received.",
+    "openFileHint": "Double-click to open the file",
+    "pausedNoPeers": "The torrent is paused.",
+    "searchingPeers": "Looking for peers via DHT and trackers…",
+    "info": {
+      "size": "Size",
+      "files": "Files",
+      "onDisk": "On disk",
+      "type": "Type",
+      "private": "Private torrent (no DHT/PEX)",
+      "added": "Added",
+      "completed": "Completed",
+      "folder": "Folder",
+      "infoHash": "Info hash",
+      "selected": "{selected} of {total}",
+      "wasted": "Wasted",
+      "seedingTime": "Seeding time"
+    },
+    "seedingTime": "Seeding for",
+    "unknownClient": "Unknown client",
+    "peerProgress": "How much the peer already has",
+    "priority": {
+      "label": "Priority",
+      "skip": "Don't download",
+      "normal": "Normal",
+      "high": "High"
+    },
+    "trackers": {
+      "dht": "DHT",
+      "pex": "PEX (peer exchange)",
+      "lsd": "Local network discovery",
+      "on": "Enabled",
+      "off": "Disabled",
+      "private": "Off: private torrent",
+      "add": "Add trackers"
+    }
+  },
+  "add": {
+    "titleDownload": "Add torrent",
+    "titleSeed": "Share a file or folder",
+    "modeTorrent": ".torrent",
+    "modeMagnet": "Magnet",
+    "modeSeed": "Share",
+    "magnetLabel": "Magnet link",
+    "magnetPlaceholder": "magnet:?xt=urn:btih:…  (several allowed, one per line)",
+    "dropTorrent": "Drop a .torrent here",
+    "dropTorrentHint": "or choose one or more files",
+    "dropSeed": "Drop a file or folder here",
+    "dropSeedHint": "Peerly creates a standard .torrent that works with any client",
+    "filesSelected": "{count} files selected",
+    "pickTorrent": "Choose .torrent",
+    "pickOther": "Choose another",
+    "pickFile": "File",
+    "pickFolder": "Folder",
+    "saveFolder": "Download folder",
+    "chooseFolder": "Choose folder",
+    "previewNoName": "The name appears once metadata is received",
+    "previewSizeUnknown": "size will be known after connecting",
+    "previewInvalid": "This doesn't look like a valid torrent.",
+    "fileCount": {
+      "one": "{count} file",
+      "other": "{count} files"
+    },
+    "adding": "Adding…",
+    "hashing": "Hashing…",
+    "startDownload": "Start download",
+    "createSeed": "Create torrent",
+    "needTorrent": "Choose a .torrent file.",
+    "needMagnet": "Paste a magnet link (starts with magnet:?).",
+    "needSeedSource": "Choose a file or folder to share.",
+    "doneOne": "Torrent added — download started.",
+    "doneMany": "Torrents added: {count}.",
+    "doneSeed": "Torrent created. Share the .torrent file or magnet link from the task menu.",
+    "needFiles": "Select at least one file.",
+    "startPaused": "Don't start the download right away",
+    "filesToDownload": "Files to download",
+    "selectedSize": "{selected} of {total}",
+    "advanced": "Advanced",
+    "private": "Private torrent",
+    "privateHint": "For private trackers only: no DHT or peer exchange",
+    "trackers": "Trackers",
+    "trackersPlaceholder": "Tracker URLs, one per line",
+    "comment": "Comment"
+  },
+  "remove": {
+    "title": "Remove task?",
+    "text": "“{name}” will be removed from the list and stop seeding.",
+    "deleteFiles": "Also delete downloaded files from disk",
+    "seedHint": "Your original files stay where they are."
+  },
+  "drop": {
+    "title": "Drop to add",
+    "zoneTitle": "Drop here to add to downloads",
+    "hint": ".torrent files will be downloaded, other files and folders will be shared"
+  },
+  "stats": {
+    "title": "Statistics",
+    "downloaded": "Downloaded, all time",
+    "uploaded": "Uploaded, all time",
+    "ratio": "Overall ratio",
+    "table": {
+      "torrent": "Torrent"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "sections": {
+      "general": "General",
+      "downloads": "Downloads",
+      "seeding": "Seeding",
+      "connection": "Connection",
+      "speed": "Speed",
+      "schedule": "Schedule",
+      "adding": "Adding torrents",
+      "altSpeed": "Alternative limits",
+      "seedingLimits": "Seeding limits",
+      "about": "About"
+    },
+    "language": "Language",
+    "languageAuto": "System default",
+    "languageHint": "Add new languages as files in the locales folder",
+    "darkMode": "Dark theme",
+    "darkModeHint": "Use the dark color palette",
+    "downloadFolder": "Default folder",
+    "change": "Change",
+    "downloadLimit": "Download limit",
+    "uploadLimit": "Upload limit",
+    "limitHint": "0 — unlimited",
+    "closeToTray": "Minimize to tray on close",
+    "closeToTrayHint": "Seeding continues in the background; quit from the tray icon",
+    "startWithWindows": "Start with Windows",
+    "startWithWindowsHint": "Peerly starts minimized and keeps seeding",
+    "notifications": "Notifications",
+    "notificationsHint": "Notify when downloads finish",
+    "magnet": "Magnet links",
+    "magnetIsDefault": "Peerly opens magnet links from the browser",
+    "magnetOffer": "Open magnet links from the browser in Peerly",
+    "default": "Default",
+    "makeDefault": "Make default",
+    "maxActiveDownloads": "Active downloads",
+    "maxActiveDownloadsHint": "The rest wait in the queue. 0 — unlimited",
+    "ratioLimit": "Stop at ratio",
+    "ratioLimitHint": "When a torrent has uploaded this much",
+    "seedTimeLimit": "Stop after seeding for",
+    "seedTimeLimitHint": "Counted from when the download finished",
+    "limitAction": "When a limit is reached",
+    "limitActionHint": "Applies to both limits",
+    "limitActions": {
+      "pause": "Stop seeding",
+      "remove": "Remove torrent (keep files)"
+    },
+    "port": "Incoming connections port",
+    "portHint": "Forward it on your router so other peers can connect to you",
+    "portBusy": "The port is used by another program — using {port} instead",
+    "maxConns": "Maximum connections",
+    "maxConnsHint": "Total number of peer connections",
+    "dht": "DHT",
+    "dhtHint": "Find peers without trackers",
+    "pex": "Peer exchange (PEX)",
+    "pexHint": "Peers tell each other about other participants",
+    "lsd": "Local network discovery",
+    "lsdHint": "Find peers on your home network",
+    "units": {
+      "kbps": "KB/s",
+      "min": "min"
+    },
+    "startMinimized": "Start minimized",
+    "startMinimizedHint": "The window stays closed on launch — Peerly runs in the tray",
+    "incompleteEnabled": "Folder for incomplete downloads",
+    "incompleteHint": "Unfinished files stay here and move to the download folder when done",
+    "watchFolder": "Watched folder",
+    "watchFolderHint": "Every .torrent that appears in this folder is added automatically",
+    "showAddDialog": "Show the add dialog",
+    "showAddDialogHint": "For .torrent files and magnet links from Windows and the browser; otherwise add right away",
+    "addPaused": "Add torrents paused",
+    "addPausedHint": "New torrents don't start until you resume them",
+    "deleteTorrentAfterAdd": "Delete .torrent after adding",
+    "deleteTorrentAfterAddHint": "Peerly keeps its own copy, the original file isn't needed",
+    "confirmRemoval": "Confirm removal",
+    "confirmRemovalHint": "Without confirmation the task is removed and the files stay on disk",
+    "altSpeedEnabled": "Use alternative limits",
+    "altSpeedHint": "A second pair of speed limits — e.g. so torrents don't get in the way during the day",
+    "altSpeedActive": "Alternative limits are active now",
+    "altDownloadLimit": "Download",
+    "altUploadLimit": "Upload",
+    "ipFilter": "IP filter",
+    "ipFilterHint": "A blocklist file of addresses to block (P2P and eMule formats)",
+    "ratioLimitEnabled": "Ratio limit",
+    "seedTimeLimitEnabled": "Seeding time limit",
+    "off": "Off",
+    "choose": "Choose",
+    "turnOff": "Turn off",
+    "about": {
+      "version": "Peerly version",
+      "versionLine": "Version {version}",
+      "tagline": "Desktop BitTorrent client built on WebTorrent: download and share .torrent files and magnet links.",
+      "copy": "Copy details",
+      "copied": "Copied to clipboard",
+      "details": "Build details",
+      "dataFolder": "Data folder",
+      "open": "Open"
+    },
+    "schedule": {
+      "enabled": "Follow the schedule",
+      "enabledHint": "For every hour of the week: full speed, limited, seeding only or paused",
+      "now": "Active now: {mode}",
+      "modes": {
+        "full": "Full speed",
+        "limited": "Limited",
+        "seed": "Seeding only",
+        "off": "Off"
+      },
+      "modeHints": {
+        "full": "Normal limits from the Speed tab",
+        "limited": "Alternative limits, set below",
+        "seed": "Downloads wait, finished torrents keep seeding",
+        "off": "All torrents are stopped"
+      },
+      "brush": "Mode to paint",
+      "gridHint": "Pick a mode and paint hours by clicking or dragging. Click a day or an hour to paint the whole row or column.",
+      "cell": "{day}, {from}–{to}: {mode}",
+      "hours": "{count} h",
+      "clear": "Reset all",
+      "limitsTitle": "Limits in “Limited” mode"
+    }
+  },
+  "toast": {
+    "magnetCopied": "Magnet link copied.",
+    "removedWithFiles": "Task and files removed.",
+    "removedKeptFiles": "Task removed, files kept on disk.",
+    "magnetDefaultOk": "Peerly now opens magnet links by default.",
+    "magnetDefaultFailed": "Windows didn't allow changing the handler — pick Peerly in “Default apps”.",
+    "recheckStarted": "Recheck started.",
+    "moved": "Files moved.",
+    "trackersAdded": "Trackers added."
+  },
+  "tray": {
+    "open": "Open Peerly",
+    "pauseAll": "Pause all",
+    "resumeAll": "Resume all",
+    "quit": "Quit"
+  },
+  "dialogs": {
+    "pickTorrent": "Choose a torrent file",
+    "pickSeedFile": "Choose a file to share",
+    "pickSeedFolder": "Choose a folder to share",
+    "pickDownloadFolder": "Choose the download folder",
+    "saveTorrent": "Save torrent file",
+    "torrentFiles": "Torrent files",
+    "moveTo": "Where to move the files",
+    "ipFilterFiles": "IP filter lists"
+  },
+  "notifications": {
+    "completedTitle": "Download complete",
+    "completedBody": "{name} — files are ready and seeding."
+  },
+  "errors": {
+    "unknown": "Unknown error",
+    "desktopOnly": "Available in the installed app.",
+    "taskNotFound": "Task not found.",
+    "magnetUnavailable": "The magnet link isn't available yet.",
+    "torrentFileNotReady": "The torrent file isn't ready yet — wait for metadata.",
+    "invalidPath": "Invalid path.",
+    "fileNotDownloaded": "The file hasn't been downloaded yet.",
+    "duplicateTorrent": "“{name}” is already in the list.",
+    "seedSourceMissing": "No file or folder selected to share.",
+    "seedSourceNotFound": "The selected file or folder was not found.",
+    "alreadySeeding": "These files are already being shared.",
+    "seedFailed": "Couldn't create the torrent: {reason}",
+    "noTorrentData": "No data to start the torrent.",
+    "sourceMissing": "No torrent or magnet link given.",
+    "invalidMagnet": "Couldn't recognize the magnet link.",
+    "torrentFileNotFound": ".torrent file not found.",
+    "invalidTorrentFile": "The file is damaged or isn't a torrent.",
+    "moveTargetExists": "“{path}” already exists in the destination folder.",
+    "moveFailed": "Couldn't move the files: {reason}"
+  },
+  "trackersModal": {
+    "title": "Add trackers",
+    "hint": "Tracker URLs for “{name}”, one per line."
+  },
+  "chart": {
+    "title": "Speed",
+    "download": "Download",
+    "upload": "Upload",
+    "now": "now",
+    "ago": "{minutes} min ago",
+    "secondsAgo": "{seconds} s ago",
+    "aria": "Speed chart for the last {minutes} min. Now: download {down}, upload {up}"
+  },
+  "sidebar": {
+    "altSpeedOn": "Alternative speed",
+    "altSpeedOff": "Normal speed"
+  }
+}
