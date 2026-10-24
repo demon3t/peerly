@@ -352,6 +352,50 @@
     "completedTitle": "Download complete",
     "completedBody": "{name} — files are ready and seeding."
   },
+  "updates": {
+    "title": "Updates",
+    "askTitle": "Check for updates automatically?",
+    "askBody": "Once a day Peerly will ask GitHub whether a new version is out. Nothing about you or your torrents is sent. You can change this in Settings → About.",
+    "allow": "Check automatically",
+    "deny": "Don't check",
+    "install": "Update",
+    "auto": "Check for updates automatically",
+    "autoHint": "Once a day asks GitHub for the latest release. Nothing about you or your torrents is sent",
+    "autoInstall": "Update automatically",
+    "autoInstallHint": "Download new versions in the background and install them when you quit Peerly",
+    "checkNow": "Check now",
+    "titlebar": {
+      "hint": "Install Peerly {version}",
+      "downloading": "Updating {percent}%",
+      "installing": "Restarting…"
+    },
+    "status": {
+      "title": "New versions",
+      "idle": "Not checked yet",
+      "checking": "Checking…",
+      "current": "You have the latest version",
+      "available": "Version {version} is available",
+      "downloading": "Downloading version {version}… {percent}%",
+      "ready": "Version {version} is ready to install",
+      "installing": "Installing version {version}…",
+      "error": "Couldn't reach GitHub. Try again later",
+      "downloadFailed": "Couldn't download the update. Try again"
+    },
+    "modal": {
+      "eyebrow": "Update",
+      "title": "What's new in Peerly {version}",
+      "installRestart": "Update and restart",
+      "install": "Download and install",
+      "later": "Later",
+      "loadFailed": "Couldn't load the list of changes. You can still update.",
+      "empty": "Fixes and improvements.",
+      "types": {
+        "new": "New",
+        "improved": "Improved",
+        "fixed": "Fixed"
+      }
+    }
+  },
   "errors": {
     "unknown": "Unknown error",
     "desktopOnly": "Available in the installed app.",

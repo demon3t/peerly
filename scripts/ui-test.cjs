@@ -16,7 +16,7 @@ fs.mkdirSync(out, { recursive: true });
   fs.mkdirSync(path.join(sandbox, 'ud'), { recursive: true });
   fs.writeFileSync(
     path.join(sandbox, 'ud', 'settings.json'),
-    JSON.stringify({ downloadPath: path.join(sandbox, 'downloads'), language: 'ru' }),
+    JSON.stringify({ downloadPath: path.join(sandbox, 'downloads'), language: 'ru', updatePromptShown: true }),
   );
   const env = { ...process.env, PEERLY_USER_DATA: path.join(sandbox, 'ud'), PEERLY_DEV_SERVER: '0' };
   delete env.ELECTRON_RUN_AS_NODE;

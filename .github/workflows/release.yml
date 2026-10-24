@@ -60,6 +60,9 @@ jobs:
       - name: Check translations
         run: npm run check:locales
 
+      - name: Check changelog
+        run: npm run check:changelog
+
       - name: Build UI
         run: npm run build
 
@@ -79,6 +82,8 @@ jobs:
       VERSION: ${{ needs.version.outputs.version }}
       GH_TOKEN: ${{ github.token }}
     steps:
+      - uses: actions/checkout@v5
+
       - uses: actions/download-artifact@v5
         with:
           path: upload
@@ -103,6 +108,8 @@ jobs:
           The installers are not code-signed: Windows SmartScreen may ask to confirm ("More info" → "Run anyway"),
           and on macOS run \`xattr -cr /Applications/Peerly.app\` once after copying the app.
           EOF
+          changes="$(node scripts/changelog.mjs notes "$VERSION")"
+          if [ -n "$changes" ]; then printf '\n## Changes\n\n%s\n' "$changes" >> notes.md; fi
 
       - name: Publish release
         run: |

@@ -21,6 +21,10 @@ contextBridge.exposeInMainWorld('torrentAPI', {
   setDefaultMagnet: () => ipcRenderer.invoke('app:set-default-magnet'),
   disk: () => ipcRenderer.invoke('app:disk'),
   openDataFolder: () => ipcRenderer.invoke('app:open-data-folder'),
+  updateStatus: () => ipcRenderer.invoke('app:update-status'),
+  checkUpdate: () => ipcRenderer.invoke('app:check-update'),
+  updateChanges: (language) => ipcRenderer.invoke('app:update-changes', language),
+  installUpdate: () => ipcRenderer.invoke('app:install-update'),
   list: () => ipcRenderer.invoke('torrent:list'),
   details: (id) => ipcRenderer.invoke('torrent:details', id),
   history: (id) => ipcRenderer.invoke('torrent:history', id),
@@ -42,4 +46,5 @@ contextBridge.exposeInMainWorld('torrentAPI', {
   onUpdate: subscribe('torrents:update'),
   onOpenRequest: subscribe('app:open-request'),
   onI18nUpdate: subscribe('i18n:update'),
+  onUpdateStatus: subscribe('app:update-status'),
 });

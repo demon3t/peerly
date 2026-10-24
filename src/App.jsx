@@ -2,18 +2,21 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { api } from './api/client';
 import { DropOverlay } from './components/DropOverlay';
 import { Toast } from './components/Toast';
+import { UpdateNotice } from './components/UpdateNotice';
 import { Sidebar } from './components/layout/Sidebar';
 import { TitleBar } from './components/layout/TitleBar';
 import { AddTorrentModal } from './features/torrents/AddTorrentModal';
 import { AddTrackersModal } from './features/torrents/AddTrackersModal';
 import { DetailsPanel } from './features/torrents/DetailsPanel';
 import { RemoveTorrentModal } from './features/torrents/RemoveTorrentModal';
+import { UpdateModal } from './features/updates/UpdateModal';
 import { useTorrentActions } from './features/torrents/useTorrentActions';
 import { useDiskUsage } from './hooks/useDiskUsage';
 import { useFileDrop } from './hooks/useFileDrop';
 import { useSettings } from './hooks/useSettings';
 import { useToast } from './hooks/useToast';
 import { useTorrents } from './hooks/useTorrents';
+import { useUpdates } from './hooks/useUpdates';
 import { useI18n } from './i18n/I18nProvider';
 import { DashboardPage } from './pages/DashboardPage';
 import { SettingsPage } from './pages/SettingsPage';
@@ -24,13 +27,14 @@ const isTorrentFile = (filePath) => /\.torrent$/i.test(filePath);
 
 export default function App() {
   const [route, setRoute] = useState({ page: 'dashboard', filter: 'all' });
-  const [modal, setModal] = useState(null); // { type: 'add', mode, sources } | { type: 'remove' | 'trackers', item }
+  const [modal, setModal] = useState(null); // { type: 'add', mode, sources } | { type: 'remove' | 'trackers', item } | { type: 'update' }
   const [selectedId, setSelectedId] = useState(null);
 
   const { t, errorText } = useI18n();
   const { toast, show: notify, showError: notifyError, dismiss } = useToast({ errorText });
   const { settings, update: updateSettings, reload: reloadSettings } = useSettings({ onError: notifyError });
   const disk = useDiskUsage(settings?.downloadPath);
+  const { update, check: checkUpdate } = useUpdates();
   // Callbacks registered once (open requests, drag & drop) read the latest settings from here.
   const settingsRef = useRef(settings);
   settingsRef.current = settings;
@@ -129,7 +133,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <TitleBar />
+      <TitleBar update={update} onOpenUpdate={() => setModal({ type: 'update' })} />
       <Sidebar
         route={route}
         counts={counts}
@@ -162,6 +166,9 @@ export default function App() {
             onChange={updateSettings}
             onPickFolder={pickDownloadFolder}
             onMakeDefaultMagnet={makeDefaultMagnet}
+            update={update}
+            onCheckUpdate={() => checkUpdate().catch(notifyError)}
+            onOpenUpdate={() => setModal({ type: 'update' })}
           />
         )}
       </main>
@@ -199,11 +206,13 @@ export default function App() {
           }}
         />
       )}
+      {modal?.type === 'update' && <UpdateModal update={update} onClose={() => setModal(null)} />}
       {modal?.type === 'remove' && (
         <RemoveTorrentModal item={modal.item} onCancel={() => setModal(null)} onConfirm={confirmRemove} />
       )}
 
       {dragging && !inlineDrop && <DropOverlay />}
+      <UpdateNotice settings={settings} onChange={updateSettings} />
       <Toast toast={toast} onDismiss={dismiss} />
     </div>
   );

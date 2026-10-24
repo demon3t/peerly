@@ -6,6 +6,7 @@ const { I18n } = require('./services/i18n');
 const { migrateLegacyProfile } = require('./services/legacy-profile');
 const { WatchFolder } = require('./services/watch-folder');
 const { OpenRequestQueue } = require('./services/open-requests');
+const { Updater } = require('./services/updater');
 const system = require('./services/system');
 const { TorrentManager } = require('./core/torrent-manager');
 const { MainWindow } = require('./ui/main-window');
@@ -36,6 +37,7 @@ const manager = new TorrentManager({
   clientOptions: { utp: false },
 });
 const watchFolder = new WatchFolder({ manager, settings });
+const updater = new Updater({ settings, onQuit: quit });
 let tray = null;
 
 const mainWindow = new MainWindow({
@@ -69,12 +71,15 @@ settings.on('change', (_, changed) => {
   if (changed.includes('language')) i18n.setLanguage(settings.get('language'));
   if (changed.includes('darkMode')) mainWindow.applyTheme();
   if (changed.includes('maxActiveDownloads')) manager.schedule();
+  if (changed.includes('checkUpdates')) updater.restart();
+  if (changed.some((key) => key === 'checkUpdates' || key === 'autoUpdate')) updater.applyAutoUpdate();
   if (changed.some((key) => ENGINE_SETTINGS.includes(key))) {
     manager.restartEngine().catch((error) => console.error('Engine restart failed', error));
   }
 });
 
 manager.on('change', pushUpdate);
+updater.on('change', (state) => mainWindow.send('app:update-status', state));
 
 manager.on('completed', ({ name }) => {
   if (!settings.get('notifications')) return;
@@ -106,6 +111,7 @@ app.whenReady().then(async () => {
     settings,
     i18n,
     mainWindow,
+    updater,
     onRendererReady: () => {
       pushUpdate();
       openRequests.flush();
@@ -122,6 +128,7 @@ app.whenReady().then(async () => {
 
   await manager.start();
   watchFolder.restart();
+  updater.restart();
   // Autostart passes --hidden; "start minimized" keeps the window in the tray too.
   mainWindow.create({ show: !process.argv.includes('--hidden') && !settings.get('startMinimized') });
   openRequests.pushFromArgv(process.argv);
@@ -139,5 +146,9 @@ app.on('before-quit', (event) => {
   if (shuttingDown) return;
   shuttingDown = true;
   event.preventDefault();
-  manager.shutdown().finally(() => app.exit(0));
+  updater.stop();
+  manager.shutdown().finally(() => {
+    updater.runPendingInstall();
+    app.exit(0);
+  });
 });

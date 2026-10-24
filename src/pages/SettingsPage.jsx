@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, Copy, FolderOpen, Magnet, X } from 'lucide-react';
+import { Check, Copy, Download, FolderOpen, Magnet, RefreshCw, X } from 'lucide-react';
 import { api } from '../api/client';
 import { NumberInput } from '../components/NumberInput';
 import { PeerlyMark } from '../components/layout/PeerlyMark';
@@ -13,7 +13,16 @@ const EMPTY_SCHEDULE = '0'.repeat(7 * 24);
 const SECTIONS = ['general', 'downloads', 'speed', 'schedule', 'seeding', 'connection', 'about'];
 
 /** All preferences, grouped into tabs like qBittorrent's options dialog. */
-export function SettingsPage({ settings, network, onChange, onPickFolder, onMakeDefaultMagnet }) {
+export function SettingsPage({
+  settings,
+  network,
+  onChange,
+  onPickFolder,
+  onMakeDefaultMagnet,
+  update,
+  onCheckUpdate,
+  onOpenUpdate,
+}) {
   const { t } = useI18n();
   const [section, setSection] = useState('general');
   const s = settings || {};
@@ -44,7 +53,15 @@ export function SettingsPage({ settings, network, onChange, onPickFolder, onMake
       {section === 'schedule' && <ScheduleSection {...controls} network={network} />}
       {section === 'seeding' && <SeedingSection {...controls} />}
       {section === 'connection' && <ConnectionSection {...controls} network={network} />}
-      {section === 'about' && <AboutSection s={s} t={t} />}
+      {section === 'about' && (
+        <AboutSection
+          {...controls}
+          onChange={onChange}
+          update={update}
+          onCheck={onCheckUpdate}
+          onInstall={onOpenUpdate}
+        />
+      )}
     </section>
   );
 }
@@ -358,7 +375,7 @@ function ConnectionSection({ s, t, set, toggle, network }) {
 }
 
 /** Version and runtime details: what to quote in a bug report. */
-function AboutSection({ s, t }) {
+function AboutSection({ s, t, onChange, update, onCheck, onInstall }) {
   const { errorText } = useI18n();
   const [status, setStatus] = useState('');
   const versions = s.versions || {};
@@ -407,6 +424,8 @@ function AboutSection({ s, t }) {
         </div>
       </div>
 
+      <UpdatesList s={s} t={t} onChange={onChange} update={update} onCheck={onCheck} onInstall={onInstall} />
+
       <h3 className="list-title">{t('settings.about.details')}</h3>
       <div className="settings-list">
         {details.map(([name, value]) => (
@@ -418,6 +437,55 @@ function AboutSection({ s, t }) {
           <button className="button button-secondary" type="button" onClick={openDataFolder}>
             <FolderOpen size={16} /> {t('settings.about.open')}
           </button>
+        </Row>
+      </div>
+    </>
+  );
+}
+
+/** The automatic check and update switches, and a manual "check now" / "update" with the state. */
+function UpdatesList({ s, t, onChange, update, onCheck, onInstall }) {
+  const status = update?.status || 'idle';
+  const busy = ['checking', 'downloading', 'installing'].includes(status);
+  const hint = t(`updates.status.${status}`, {
+    version: update?.latest,
+    percent: Math.round((update?.progress || 0) * 100),
+  });
+  return (
+    <>
+      <h3 className="list-title">{t('updates.title')}</h3>
+      <div className="settings-list">
+        <Row title={t('updates.auto')} hint={t('updates.autoHint')}>
+          <Toggle
+            checked={Boolean(s.checkUpdates)}
+            onChange={(value) => onChange({ checkUpdates: value, updatePromptShown: true })}
+            label={t('updates.auto')}
+          />
+        </Row>
+        {s.checkUpdates && (
+          <Row title={t('updates.autoInstall')} hint={t('updates.autoInstallHint')}>
+            <Toggle
+              checked={Boolean(s.autoUpdate)}
+              onChange={(value) => onChange({ autoUpdate: value })}
+              label={t('updates.autoInstall')}
+            />
+          </Row>
+        )}
+        <Row title={t('updates.status.title')} hint={hint} warning={status === 'error' || status === 'downloadFailed'}>
+          {update?.available && status !== 'checking' ? (
+            <button
+              className="button button-primary"
+              type="button"
+              onClick={onInstall}
+              disabled={status === 'installing'}
+            >
+              <Download size={16} /> {t('updates.install')}
+            </button>
+          ) : (
+            <button className="button button-secondary" type="button" onClick={onCheck} disabled={busy}>
+              <RefreshCw size={16} /> {t('updates.checkNow')}
+            </button>
+          )}
         </Row>
       </div>
     </>

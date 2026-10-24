@@ -94,13 +94,16 @@ electron/                  main process (CommonJS)
     legacy-profile.js      one-time import of the old "Northstar" profile
     system.js              autostart, magnet handler, notifications, disk usage
     open-requests.js       .torrent/magnet arguments from Windows, buffered for the UI
+    updater.js             opt-in update check, verified download and install from GitHub Releases
   ui/
     main-window.js         frameless BrowserWindow, native caption buttons, hide-to-tray
     tray.js                tray icon and menu
   lib/                     helpers: json-file, paths, format, errors, peer-client
 
 shared/translate.mjs       translation core used by both processes
+shared/changelog.mjs       parser of changelog/*.md (the update window, CI release notes)
 locales/                   one <code>.json per language; en.json is the reference
+changelog/                 what's new, one <code>.md per language; a section per package.json version
 
 src/                       renderer (React)
   App.jsx                  root: routing, modals, wiring hooks to pages
@@ -164,7 +167,16 @@ by the user or the person installing or operating it.
 Peerly is a BitTorrent client: when you add a torrent or share files, it connects to the trackers listed in
 that torrent (plus a few public ones), to the DHT network and to other peers in order to download and upload
 that torrent's data. This is how BitTorrent works and other peers can see your IP address while a torrent is active.
-If you set an IP filter URL, Peerly downloads that list. There is no telemetry, analytics or update check.
+If you set an IP filter URL, Peerly downloads that list. There is no telemetry or analytics.
+
+On first launch Peerly asks whether to check for updates automatically; until you answer *yes*, it makes no such
+request. When allowed (or when you press *Check now* in Settings → About), it sends one anonymous request to
+`api.github.com` for the latest release of this repository — at startup and then once a day. Nothing about you or your
+torrents is sent. If a newer version exists, an *Update* button appears in the title bar. Pressing it — or, with
+*Update automatically* on, a background download — fetches the installer for your system from this repository's
+releases, checks its SHA-256 against the one GitHub publishes, and installs it (on quit, or right away with a restart).
+Before that, the update window reads the list of changes (`changelog/<language>.md` of that release) from
+`raw.githubusercontent.com`.
 Settings and the torrent list are stored only on your computer.
 
 ## License
