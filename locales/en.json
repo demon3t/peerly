@@ -298,6 +298,15 @@
       "dataFolder": "Data folder",
       "open": "Open"
     },
+    "feedback": {
+      "title": "Feedback",
+      "suggest": "Suggest a feature",
+      "suggestHint": "Opens a form on GitHub (needs a GitHub account). Your Peerly version and system are filled in",
+      "suggestButton": "Suggest",
+      "report": "Report a problem",
+      "reportHint": "Something doesn't work? Opens a bug report form on GitHub",
+      "reportButton": "Report"
+    },
     "schedule": {
       "enabled": "Follow the schedule",
       "enabledHint": "For every hour of the week: full speed, limited, seeding only or paused",

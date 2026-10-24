@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, Copy, Download, FolderOpen, Magnet, RefreshCw, X } from 'lucide-react';
+import { Bug, Check, Copy, Download, FolderOpen, Lightbulb, Magnet, RefreshCw, X } from 'lucide-react';
 import { api } from '../api/client';
 import { NumberInput } from '../components/NumberInput';
 import { PeerlyMark } from '../components/layout/PeerlyMark';
@@ -397,6 +397,14 @@ function AboutSection({ s, t, onChange, update, onCheck, onInstall }) {
     }
   }
 
+  async function openFeedback(kind) {
+    try {
+      await api.openFeedback(kind);
+    } catch (error) {
+      setStatus(errorText(error));
+    }
+  }
+
   async function openDataFolder() {
     try {
       await api.openDataFolder();
@@ -425,6 +433,20 @@ function AboutSection({ s, t, onChange, update, onCheck, onInstall }) {
       </div>
 
       <UpdatesList s={s} t={t} onChange={onChange} update={update} onCheck={onCheck} onInstall={onInstall} />
+
+      <h3 className="list-title">{t('settings.feedback.title')}</h3>
+      <div className="settings-list">
+        <Row title={t('settings.feedback.suggest')} hint={t('settings.feedback.suggestHint')}>
+          <button className="button button-secondary" type="button" onClick={() => openFeedback('feature')}>
+            <Lightbulb size={16} /> {t('settings.feedback.suggestButton')}
+          </button>
+        </Row>
+        <Row title={t('settings.feedback.report')} hint={t('settings.feedback.reportHint')}>
+          <button className="button button-secondary" type="button" onClick={() => openFeedback('bug')}>
+            <Bug size={16} /> {t('settings.feedback.reportButton')}
+          </button>
+        </Row>
+      </div>
 
       <h3 className="list-title">{t('settings.about.details')}</h3>
       <div className="settings-list">

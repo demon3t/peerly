@@ -4,6 +4,13 @@
 Format opisano w changelog/en.md. Nagłówków "### New", "### Improved" i "### Fixed" nie tłumaczymy.
 -->
 
+## 0.3.0 — 2026-10-24
+
+### New
+
+- „Zaproponuj funkcję” i „Zgłoś problem” w Ustawienia → O programie otwierają gotowy formularz na GitHub
+  z uzupełnioną wersją Peerly i systemu.
+
 ## 0.2.0 — 2026-10-24
 
 ### New

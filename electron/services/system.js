@@ -1,4 +1,5 @@
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { app, Notification } = require('electron');
 const { ICON_PATH } = require('../config');
@@ -30,6 +31,12 @@ function showNotification({ title, body, onClick }) {
   note.show();
 }
 
+/** "Windows 10.0.26200 x64" — for bug reports. */
+function systemLabel() {
+  const name = { win32: 'Windows', darwin: 'macOS', linux: 'Linux' }[process.platform] || process.platform;
+  return `${name} ${os.release()} ${process.arch}`;
+}
+
 function diskUsage(target) {
   try {
     const stats = fs.statfsSync(target);
@@ -39,4 +46,11 @@ function diskUsage(target) {
   }
 }
 
-module.exports = { applyLoginItem, isDefaultMagnetClient, setDefaultMagnetClient, showNotification, diskUsage };
+module.exports = {
+  applyLoginItem,
+  isDefaultMagnetClient,
+  setDefaultMagnetClient,
+  showNotification,
+  systemLabel,
+  diskUsage,
+};

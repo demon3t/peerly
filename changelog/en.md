@@ -8,6 +8,13 @@ the version and add a section for every release worth announcing. Keep the "### 
 developers: what they can now do or what works better.
 -->
 
+## 0.3.0 — 2026-10-24
+
+### New
+
+- "Suggest a feature" and "Report a problem" in Settings → About open a ready form on GitHub with your Peerly
+  version and system filled in.
+
 ## 0.2.0 — 2026-10-24
 
 ### New

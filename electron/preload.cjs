@@ -21,6 +21,7 @@ contextBridge.exposeInMainWorld('torrentAPI', {
   setDefaultMagnet: () => ipcRenderer.invoke('app:set-default-magnet'),
   disk: () => ipcRenderer.invoke('app:disk'),
   openDataFolder: () => ipcRenderer.invoke('app:open-data-folder'),
+  openFeedback: (kind) => ipcRenderer.invoke('app:open-feedback', kind),
   updateStatus: () => ipcRenderer.invoke('app:update-status'),
   checkUpdate: () => ipcRenderer.invoke('app:check-update'),
   updateChanges: (language) => ipcRenderer.invoke('app:update-changes', language),
