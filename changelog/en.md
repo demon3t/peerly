@@ -16,3 +16,4 @@ developers: what they can now do or what works better.
 - When an update is out, an "Update" button appears in the title bar. It shows what changed, then downloads,
   verifies and installs the new version and restarts Peerly.
 - "Update automatically": new versions download in the background and install when you quit Peerly.
+- Polish translation.

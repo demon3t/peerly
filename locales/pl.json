@@ -354,6 +354,50 @@
     "completedTitle": "Pobieranie ukończone",
     "completedBody": "{name} — pliki są gotowe i udostępniane."
   },
+  "updates": {
+    "title": "Aktualizacje",
+    "askTitle": "Sprawdzać aktualizacje automatycznie?",
+    "askBody": "Raz dziennie Peerly zapyta GitHub, czy jest nowa wersja. Żadne dane o Tobie ani Twoich torrentach nie są wysyłane. Możesz to zmienić w Ustawienia → O programie.",
+    "allow": "Sprawdzaj",
+    "deny": "Nie sprawdzaj",
+    "install": "Aktualizuj",
+    "auto": "Sprawdzaj aktualizacje automatycznie",
+    "autoHint": "Raz dziennie pyta GitHub o najnowsze wydanie. Żadne dane o Tobie ani Twoich torrentach nie są wysyłane",
+    "autoInstall": "Aktualizuj automatycznie",
+    "autoInstallHint": "Pobieraj nowe wersje w tle i instaluj je przy zamykaniu Peerly",
+    "checkNow": "Sprawdź teraz",
+    "titlebar": {
+      "hint": "Zainstaluj Peerly {version}",
+      "downloading": "Aktualizacja {percent}%",
+      "installing": "Ponowne uruchamianie…"
+    },
+    "status": {
+      "title": "Nowe wersje",
+      "idle": "Jeszcze nie sprawdzono",
+      "checking": "Sprawdzanie…",
+      "current": "Masz najnowszą wersję",
+      "available": "Dostępna jest wersja {version}",
+      "downloading": "Pobieranie wersji {version}… {percent}%",
+      "ready": "Wersja {version} jest gotowa do instalacji",
+      "installing": "Instalowanie wersji {version}…",
+      "error": "Nie udało się połączyć z GitHub. Spróbuj później",
+      "downloadFailed": "Nie udało się pobrać aktualizacji. Spróbuj ponownie"
+    },
+    "modal": {
+      "eyebrow": "Aktualizacja",
+      "title": "Co nowego w Peerly {version}",
+      "installRestart": "Aktualizuj i uruchom ponownie",
+      "install": "Pobierz i zainstaluj",
+      "later": "Później",
+      "loadFailed": "Nie udało się wczytać listy zmian. Nadal możesz zaktualizować.",
+      "empty": "Poprawki i ulepszenia.",
+      "types": {
+        "new": "Nowe",
+        "improved": "Ulepszenia",
+        "fixed": "Poprawki"
+      }
+    }
+  },
   "errors": {
     "unknown": "Nieznany błąd",
     "desktopOnly": "Dostępne w zainstalowanej aplikacji.",
