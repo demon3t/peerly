@@ -66,7 +66,7 @@ const DEFAULT_SETTINGS = {
   // Updates: the automatic check contacts GitHub, so it stays off until the user agrees.
   checkUpdates: false,
   updatePromptShown: false, // the "check for updates automatically?" question was answered
-  skippedVersion: '', // a release the user chose not to be reminded about
+  autoUpdate: true, // download new versions in the background and install them on exit
 };
 
 // Settings that require recreating the WebTorrent client.

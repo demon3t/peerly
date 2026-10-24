@@ -39,6 +39,34 @@
   margin-right: 8px;
   color: var(--soft);
 }
+.titlebar-update {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  margin-left: auto;
+  padding: 0 11px;
+  color: #fff;
+  /* While downloading, the lighter part fills up with --progress. */
+  background: linear-gradient(90deg, var(--teal) var(--progress, 0%), var(--teal-dark) var(--progress, 0%));
+  border: 0;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  -webkit-app-region: no-drag;
+}
+.titlebar-update:not(:disabled) {
+  background: var(--teal);
+  cursor: pointer;
+}
+.titlebar-update:hover:not(:disabled) {
+  background: var(--teal-dark);
+}
+.titlebar-update:disabled {
+  opacity: 1;
+  cursor: default;
+}
 
 /* ---------- sidebar ---------- */
 .sidebar {

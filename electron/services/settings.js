@@ -22,7 +22,6 @@ const STRING_KEYS = {
   language: null,
   limitAction: ['pause', 'remove'],
   schedule: SCHEDULE_PATTERN,
-  skippedVersion: null,
 };
 // Optional folders/files: '' means "off", anything else is stored as an absolute path.
 const OPTIONAL_PATHS = new Set(['incompletePath', 'watchFolder', 'ipFilterPath']);

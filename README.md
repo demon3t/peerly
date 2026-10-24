@@ -94,7 +94,7 @@ electron/                  main process (CommonJS)
     legacy-profile.js      one-time import of the old "Northstar" profile
     system.js              autostart, magnet handler, notifications, disk usage
     open-requests.js       .torrent/magnet arguments from Windows, buffered for the UI
-    updater.js             opt-in check of GitHub Releases for a newer version
+    updater.js             opt-in update check, verified download and install from GitHub Releases
   ui/
     main-window.js         frameless BrowserWindow, native caption buttons, hide-to-tray
     tray.js                tray icon and menu
@@ -170,7 +170,9 @@ If you set an IP filter URL, Peerly downloads that list. There is no telemetry o
 On first launch Peerly asks whether to check for updates automatically; until you answer *yes*, it makes no such
 request. When allowed (or when you press *Check now* in Settings → About), it sends one anonymous request to
 `api.github.com` for the latest release of this repository — at startup and then once a day. Nothing about you or your
-torrents is sent, and nothing is downloaded or installed: Peerly only shows a link to the release page.
+torrents is sent. If a newer version exists, an *Update* button appears in the title bar. Pressing it — or, with
+*Update automatically* on, a background download — fetches the installer for your system from this repository's
+releases, checks its SHA-256 against the one GitHub publishes, and installs it (on quit, or right away with a restart).
 Settings and the torrent list are stored only on your computer.
 
 ## License

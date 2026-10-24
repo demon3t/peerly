@@ -6,7 +6,7 @@ const { I18n } = require('./services/i18n');
 const { migrateLegacyProfile } = require('./services/legacy-profile');
 const { WatchFolder } = require('./services/watch-folder');
 const { OpenRequestQueue } = require('./services/open-requests');
-const { UpdateChecker } = require('./services/updater');
+const { Updater } = require('./services/updater');
 const system = require('./services/system');
 const { TorrentManager } = require('./core/torrent-manager');
 const { MainWindow } = require('./ui/main-window');
@@ -37,7 +37,7 @@ const manager = new TorrentManager({
   clientOptions: { utp: false },
 });
 const watchFolder = new WatchFolder({ manager, settings });
-const updater = new UpdateChecker({ settings });
+const updater = new Updater({ settings, onQuit: quit });
 let tray = null;
 
 const mainWindow = new MainWindow({
@@ -72,6 +72,7 @@ settings.on('change', (_, changed) => {
   if (changed.includes('darkMode')) mainWindow.applyTheme();
   if (changed.includes('maxActiveDownloads')) manager.schedule();
   if (changed.includes('checkUpdates')) updater.restart();
+  if (changed.some((key) => key === 'checkUpdates' || key === 'autoUpdate')) updater.applyAutoUpdate();
   if (changed.some((key) => ENGINE_SETTINGS.includes(key))) {
     manager.restartEngine().catch((error) => console.error('Engine restart failed', error));
   }
@@ -146,5 +147,8 @@ app.on('before-quit', (event) => {
   shuttingDown = true;
   event.preventDefault();
   updater.stop();
-  manager.shutdown().finally(() => app.exit(0));
+  manager.shutdown().finally(() => {
+    updater.runPendingInstall();
+    app.exit(0);
+  });
 });

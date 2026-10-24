@@ -53,7 +53,7 @@ function registerIpc({ manager, settings, i18n, mainWindow, updater, onRendererR
   handle('app:disk', () => system.diskUsage(settings.downloadPath()));
   handle('app:update-status', () => updater.view());
   handle('app:check-update', () => updater.check());
-  handle('app:open-release', () => updater.openRelease());
+  handle('app:install-update', () => updater.install());
   handle('app:open-data-folder', async () => {
     const error = await shell.openPath(app.getPath('userData'));
     if (error) throw new Error(error);

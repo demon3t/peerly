@@ -21,7 +21,7 @@ export function SettingsPage({
   onMakeDefaultMagnet,
   update,
   onCheckUpdate,
-  onDownloadUpdate,
+  onInstallUpdate,
 }) {
   const { t } = useI18n();
   const [section, setSection] = useState('general');
@@ -59,7 +59,7 @@ export function SettingsPage({
           onChange={onChange}
           update={update}
           onCheck={onCheckUpdate}
-          onDownload={onDownloadUpdate}
+          onInstall={onInstallUpdate}
         />
       )}
     </section>
@@ -375,7 +375,7 @@ function ConnectionSection({ s, t, set, toggle, network }) {
 }
 
 /** Version and runtime details: what to quote in a bug report. */
-function AboutSection({ s, t, onChange, update, onCheck, onDownload }) {
+function AboutSection({ s, t, onChange, update, onCheck, onInstall }) {
   const { errorText } = useI18n();
   const [status, setStatus] = useState('');
   const versions = s.versions || {};
@@ -424,7 +424,7 @@ function AboutSection({ s, t, onChange, update, onCheck, onDownload }) {
         </div>
       </div>
 
-      <UpdatesList s={s} t={t} onChange={onChange} update={update} onCheck={onCheck} onDownload={onDownload} />
+      <UpdatesList s={s} t={t} onChange={onChange} update={update} onCheck={onCheck} onInstall={onInstall} />
 
       <h3 className="list-title">{t('settings.about.details')}</h3>
       <div className="settings-list">
@@ -443,9 +443,14 @@ function AboutSection({ s, t, onChange, update, onCheck, onDownload }) {
   );
 }
 
-/** The automatic-check switch and a manual "check now" with its result. */
-function UpdatesList({ s, t, onChange, update, onCheck, onDownload }) {
+/** The automatic check and update switches, and a manual "check now" / "update" with the state. */
+function UpdatesList({ s, t, onChange, update, onCheck, onInstall }) {
   const status = update?.status || 'idle';
+  const busy = ['checking', 'downloading', 'installing'].includes(status);
+  const hint = t(`updates.status.${status}`, {
+    version: update?.latest,
+    percent: Math.round((update?.progress || 0) * 100),
+  });
   return (
     <>
       <h3 className="list-title">{t('updates.title')}</h3>
@@ -457,22 +462,22 @@ function UpdatesList({ s, t, onChange, update, onCheck, onDownload }) {
             label={t('updates.auto')}
           />
         </Row>
-        <Row
-          title={t('updates.status.title')}
-          hint={t(`updates.status.${status}`, { version: update?.latest })}
-          warning={status === 'error'}
-        >
-          {status === 'available' ? (
-            <button className="button button-primary" type="button" onClick={onDownload}>
-              <Download size={16} /> {t('updates.download')}
+        {s.checkUpdates && (
+          <Row title={t('updates.autoInstall')} hint={t('updates.autoInstallHint')}>
+            <Toggle
+              checked={Boolean(s.autoUpdate)}
+              onChange={(value) => onChange({ autoUpdate: value })}
+              label={t('updates.autoInstall')}
+            />
+          </Row>
+        )}
+        <Row title={t('updates.status.title')} hint={hint} warning={status === 'error' || status === 'downloadFailed'}>
+          {update?.available && status !== 'checking' ? (
+            <button className="button button-primary" type="button" onClick={onInstall} disabled={busy}>
+              <Download size={16} /> {t('updates.install')}
             </button>
           ) : (
-            <button
-              className="button button-secondary"
-              type="button"
-              onClick={onCheck}
-              disabled={status === 'checking'}
-            >
+            <button className="button button-secondary" type="button" onClick={onCheck} disabled={busy}>
               <RefreshCw size={16} /> {t('updates.checkNow')}
             </button>
           )}

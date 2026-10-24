@@ -120,8 +120,8 @@ export default function App() {
     }
   }
 
-  function openRelease() {
-    api.openRelease().catch(notifyError);
+  function installUpdate() {
+    api.installUpdate().catch(notifyError);
   }
 
   async function makeDefaultMagnet() {
@@ -136,7 +136,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <TitleBar />
+      <TitleBar update={update} onInstallUpdate={installUpdate} />
       <Sidebar
         route={route}
         counts={counts}
@@ -171,7 +171,7 @@ export default function App() {
             onMakeDefaultMagnet={makeDefaultMagnet}
             update={update}
             onCheckUpdate={() => checkUpdate().catch(notifyError)}
-            onDownloadUpdate={openRelease}
+            onInstallUpdate={installUpdate}
           />
         )}
       </main>
@@ -214,7 +214,7 @@ export default function App() {
       )}
 
       {dragging && !inlineDrop && <DropOverlay />}
-      <UpdateNotice settings={settings} update={update} onChange={updateSettings} onDownload={openRelease} />
+      <UpdateNotice settings={settings} onChange={updateSettings} />
       <Toast toast={toast} onDismiss={dismiss} />
     </div>
   );
