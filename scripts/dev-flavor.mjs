@@ -1,8 +1,7 @@
 // Turns this working copy into a "Peerly Dev" build: red icon, its own app id, name, install
 // folder and profile, so it installs next to the release and never touches its data.
-// CI runs it before packaging a pull request (.github/workflows/dev-build.yml); locally:
-//   node scripts/dev-flavor.mjs [build number] && npm run build && node scripts/package-all.mjs win x64
-// It edits package.json in place — don't commit the result.
+// Used by scripts/dist-dev.mjs (npm run dist:dev), which restores package.json afterwards;
+// run on its own, it edits package.json in place — don't commit the result.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

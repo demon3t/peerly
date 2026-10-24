@@ -76,13 +76,12 @@ On Linux, make the AppImage executable (`chmod +x`) or install the `.deb` with `
 
 ### Dev builds
 
-Every pull request gets a **Peerly Dev** Windows installer to try before merging: CI publishes it as the pre-release
-`dev-pr-<number>` and links it in a comment on the pull request; it is deleted when the pull request closes. A dev build
-has a red icon and a "Dev" tag, its own app id, install folder and profile, so it lives next to the regular Peerly and
-never touches its settings or torrents. To make one locally (this edits `package.json`, don't commit it):
+A **Peerly Dev** Windows installer is built locally to try a branch before merging; it is never published.
+It has a red icon and a "Dev" tag, its own app id, install folder and profile, so it lives next to the regular Peerly
+and never touches its settings or torrents.
 
 ```sh
-node scripts/dev-flavor.mjs && npm run build && node scripts/package-all.mjs win x64
+npm run dist:dev   # -> release/upload/Peerly-Dev-Windows-x64-Setup.exe
 ```
 
 ## Architecture
