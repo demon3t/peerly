@@ -1,13 +1,13 @@
-import { ArrowDownToLine } from 'lucide-react';
+import { ArrowDownToLine, MessageSquare } from 'lucide-react';
 import { useI18n } from '../../i18n/I18nProvider';
 import { PeerlyMark } from './PeerlyMark';
 
 /**
  * Custom title bar of the frameless window. The whole strip drags the window;
  * Windows draws its native minimize/maximize/close buttons over the right edge.
- * Next to them sits the "Update" button while a newer version is available.
+ * Next to them sit the "Feedback" button and, while a newer version is available, "Update".
  */
-export function TitleBar({ title, update, onOpenUpdate }) {
+export function TitleBar({ title, update, onOpenUpdate, onFeedback }) {
   const { t } = useI18n();
   const status = update?.status;
   const percent = Math.round((update?.progress || 0) * 100);
@@ -25,6 +25,10 @@ export function TitleBar({ title, update, onOpenUpdate }) {
       </span>
       <span className="titlebar-name">Peerly</span>
       {title && <span className="titlebar-title">{title}</span>}
+      <button className="titlebar-feedback" type="button" onClick={onFeedback} title={t('feedback.hint')}>
+        <MessageSquare size={13} />
+        {t('feedback.button')}
+      </button>
       {update?.available && status !== 'checking' && (
         <button
           className="titlebar-update"

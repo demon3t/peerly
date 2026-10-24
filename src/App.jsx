@@ -133,7 +133,11 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <TitleBar update={update} onOpenUpdate={() => setModal({ type: 'update' })} />
+      <TitleBar
+        update={update}
+        onOpenUpdate={() => setModal({ type: 'update' })}
+        onFeedback={() => api.openFeedback().catch(notifyError)}
+      />
       <Sidebar
         route={route}
         counts={counts}

@@ -88,7 +88,7 @@ const SPEED_SETTINGS = [
 ];
 
 const RELEASES_PAGE_URL = 'https://github.com/demon3t/peerly/releases';
-// New issue from a form in .github/ISSUE_TEMPLATE (the "Suggest a feature" / "Report a problem" buttons).
+// New issue from a form in .github/ISSUE_TEMPLATE (the "Feedback" button in the title bar).
 const NEW_ISSUE_URL = 'https://github.com/demon3t/peerly/issues/new';
 const RELEASES_API_URL = 'https://api.github.com/repos/demon3t/peerly/releases/latest';
 // changelog/<language>.md is read from the release tag: <CHANGELOG_BASE_URL>/v<version>/changelog/<code>.md

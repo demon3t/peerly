@@ -8,8 +8,8 @@ Format opisano w changelog/en.md. Nagłówków "### New", "### Improved" i "### 
 
 ### New
 
-- „Zaproponuj funkcję” i „Zgłoś problem” w Ustawienia → O programie otwierają gotowy formularz na GitHub
-  z uzupełnioną wersją Peerly i systemu.
+- Przycisk „Opinia” na pasku tytułu: zaproponuj pomysł lub zgłoś problem w gotowym formularzu na GitHub z już
+  uzupełnioną wersją Peerly i systemu.
 
 ## 0.2.0 — 2026-10-24
 

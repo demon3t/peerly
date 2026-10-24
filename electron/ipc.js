@@ -57,9 +57,9 @@ function registerIpc({ manager, settings, i18n, mainWindow, updater, onRendererR
   handle('app:update-changes', (language) => updater.changes(String(language || '')));
   handle('app:install-update', () => updater.install());
   // Opens a GitHub issue form in the browser; the user sees and edits everything before sending.
-  handle('app:open-feedback', async (kind) => {
+  handle('app:open-feedback', async () => {
     const url = new URL(NEW_ISSUE_URL);
-    url.searchParams.set('template', kind === 'bug' ? 'bug_report.yml' : 'feature_request.yml');
+    url.searchParams.set('template', 'feedback.yml');
     url.searchParams.set('version', `Peerly ${app.getVersion()} · ${system.systemLabel()}`);
     await shell.openExternal(url.toString());
     return true;

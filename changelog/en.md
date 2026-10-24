@@ -12,8 +12,8 @@ developers: what they can now do or what works better.
 
 ### New
 
-- "Suggest a feature" and "Report a problem" in Settings → About open a ready form on GitHub with your Peerly
-  version and system filled in.
+- A "Feedback" button in the title bar: suggest an idea or report a problem in a ready form on GitHub with your
+  Peerly version and system filled in.
 
 ## 0.2.0 — 2026-10-24
 

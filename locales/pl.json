@@ -300,15 +300,6 @@
       "dataFolder": "Folder danych",
       "open": "Otwórz"
     },
-    "feedback": {
-      "title": "Opinie",
-      "suggest": "Zaproponuj funkcję",
-      "suggestHint": "Otworzy formularz na GitHub (wymaga konta GitHub). Wersja Peerly i systemu zostanie uzupełniona",
-      "suggestButton": "Zaproponuj",
-      "report": "Zgłoś problem",
-      "reportHint": "Coś nie działa? Otworzy formularz zgłoszenia błędu na GitHub",
-      "reportButton": "Zgłoś"
-    },
     "schedule": {
       "enabled": "Działaj według harmonogramu",
       "enabledHint": "Dla każdej godziny tygodnia: pełna prędkość, ograniczenie, tylko udostępnianie lub pauza",
@@ -362,6 +353,10 @@
   "notifications": {
     "completedTitle": "Pobieranie ukończone",
     "completedBody": "{name} — pliki są gotowe i udostępniane."
+  },
+  "feedback": {
+    "button": "Opinia",
+    "hint": "Zaproponuj pomysł lub zgłoś problem na GitHub (wymaga konta GitHub). Wersja Peerly i systemu zostanie uzupełniona"
   },
   "updates": {
     "title": "Aktualizacje",

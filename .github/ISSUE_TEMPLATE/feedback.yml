@@ -1,0 +1,33 @@
+# Opened from Peerly's "Feedback" button in the title bar, which pre-fills the "version" field.
+name: Feedback
+description: Suggest an idea or report a problem.
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it about?
+      options:
+        - An idea for Peerly
+        - Something doesn't work
+    validations:
+      required: true
+  - type: textarea
+    id: message
+    attributes:
+      label: Tell us more
+      description: For an idea, what should Peerly do and why. For a problem, what happened, what you expected and how to reproduce it.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Peerly version and system
+      placeholder: Peerly 0.3.0 · Windows 11 x64
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Build details
+      description: Settings → About → "Copy details", if you can.
+      render: text

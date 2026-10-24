@@ -138,9 +138,8 @@ export function createMockApi() {
     setDefaultMagnet: desktopOnly,
     disk: async () => ({ free: 340e9, total: 500e9 }),
     openDataFolder: desktopOnly,
-    openFeedback: async (kind) => {
-      const template = kind === 'bug' ? 'bug_report.yml' : 'feature_request.yml';
-      window.open(`https://github.com/demon3t/peerly/issues/new?template=${template}`, '_blank');
+    openFeedback: async () => {
+      window.open('https://github.com/demon3t/peerly/issues/new?template=feedback.yml', '_blank');
       return true;
     },
     updateStatus: async () => ({ status: 'idle', current: settings.version, latest: '', available: false }),
