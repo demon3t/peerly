@@ -5,12 +5,15 @@ import { PeerlyMark } from './PeerlyMark';
 /**
  * Custom title bar of the frameless window. The whole strip drags the window;
  * Windows draws its native minimize/maximize/close buttons over the right edge.
- * Next to them sit the "Feedback" button and, while a newer version is available, "Update".
+ * Next to them, from the right: "Feedback", always there, and "Update" while a newer version
+ * is available, so Update coming and going never moves Feedback. Both show just an icon and
+ * widen to show their label on hover (Update stays wide while it downloads or installs).
  */
 export function TitleBar({ title, update, onOpenUpdate, onFeedback }) {
   const { t } = useI18n();
   const status = update?.status;
   const percent = Math.round((update?.progress || 0) * 100);
+  const busy = status === 'downloading' || status === 'installing';
   const label =
     status === 'downloading'
       ? t('updates.titlebar.downloading', { percent })
@@ -25,23 +28,30 @@ export function TitleBar({ title, update, onOpenUpdate, onFeedback }) {
       </span>
       <span className="titlebar-name">Peerly</span>
       {title && <span className="titlebar-title">{title}</span>}
-      <button className="titlebar-feedback" type="button" onClick={onFeedback} title={t('feedback.hint')}>
-        <MessageSquare size={13} />
-        {t('feedback.button')}
-      </button>
-      {update?.available && status !== 'checking' && (
+      <div className="titlebar-actions">
+        {update?.available && status !== 'checking' && (
+          <button
+            className={`titlebar-action titlebar-update${busy ? ' expanded' : ''}`}
+            type="button"
+            onClick={onOpenUpdate}
+            disabled={status === 'installing'}
+            title={t('updates.titlebar.hint', { version: update.latest })}
+            style={{ '--progress': `${status === 'downloading' ? percent : 100}%` }}
+          >
+            <ArrowDownToLine size={14} />
+            <span className="titlebar-action-label">{label}</span>
+          </button>
+        )}
         <button
-          className="titlebar-update"
+          className="titlebar-action titlebar-feedback"
           type="button"
-          onClick={onOpenUpdate}
-          disabled={status === 'installing'}
-          title={t('updates.titlebar.hint', { version: update.latest })}
-          style={{ '--progress': `${status === 'downloading' ? percent : 100}%` }}
+          onClick={onFeedback}
+          title={t('feedback.hint')}
         >
-          <ArrowDownToLine size={14} />
-          {label}
+          <MessageSquare size={14} />
+          <span className="titlebar-action-label">{t('feedback.button')}</span>
         </button>
-      )}
+      </div>
     </header>
   );
 }
