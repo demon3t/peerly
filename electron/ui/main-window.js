@@ -1,5 +1,5 @@
 const { app, BrowserWindow, shell } = require('electron');
-const { APP_NAME, ICON_PATH, PRELOAD_PATH, RENDERER_INDEX, DEV_SERVER_URL } = require('../config');
+const { APP_NAME, CHANNEL, ICON_PATH, PRELOAD_PATH, RENDERER_INDEX, DEV_SERVER_URL } = require('../config');
 
 // Frameless window: the app draws its own title bar (see src/components/layout/TitleBar.jsx);
 // Windows keeps its native caption buttons on top of it, so Snap Layouts still work.
@@ -42,6 +42,8 @@ class MainWindow {
         contextIsolation: true,
         nodeIntegration: false,
         sandbox: true,
+        // Read by preload.cjs: the renderer paints a dev build's mark red.
+        additionalArguments: [`--peerly-channel=${CHANNEL}`],
       },
     });
     win.removeMenu();

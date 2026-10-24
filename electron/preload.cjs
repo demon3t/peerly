@@ -8,8 +8,11 @@ const subscribe = (channel) => (callback) => {
   return () => ipcRenderer.removeListener(channel, listener);
 };
 
+const channelArg = process.argv.find((arg) => arg.startsWith('--peerly-channel='));
+
 contextBridge.exposeInMainWorld('torrentAPI', {
   platform: process.platform,
+  channel: channelArg ? channelArg.split('=')[1] : 'release',
   ready: () => ipcRenderer.invoke('app:ready'),
   pickTorrent: () => ipcRenderer.invoke('dialog:pick-torrent'),
   pickContent: (kind) => ipcRenderer.invoke('dialog:pick-content', kind),

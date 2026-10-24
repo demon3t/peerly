@@ -4,7 +4,7 @@ const { EventEmitter, once } = require('events');
 const fs = require('fs');
 const path = require('path');
 const { app, net, shell } = require('electron');
-const { CHANGELOG_BASE_URL, RELEASES_API_URL, RELEASES_PAGE_URL } = require('../config');
+const { CHANGELOG_BASE_URL, CHANNEL, RELEASES_API_URL, RELEASES_PAGE_URL } = require('../config');
 
 const FIRST_CHECK_DELAY_MS = 15_000;
 const CHECK_INTERVAL_MS = 24 * 60 * 60 * 1000;
@@ -314,9 +314,12 @@ class Updater extends EventEmitter {
     return Boolean(version) && compareVersions(version, this.state.current) > 0;
   }
 
-  /** A development run never replaces itself; it only links to the release. */
+  /**
+   * A development run never replaces itself, and a dev build would install the release
+   * Peerly next to it rather than update itself; both only link to the release.
+   */
   canDownload() {
-    return app.isPackaged && Boolean(this.release?.asset);
+    return app.isPackaged && CHANNEL !== 'dev' && Boolean(this.release?.asset);
   }
 
   installsInPlace() {

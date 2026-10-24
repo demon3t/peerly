@@ -31,6 +31,21 @@
   font-weight: 700;
   letter-spacing: 0.01em;
 }
+/* Dev builds (scripts/dev-flavor.mjs): red mark like their icon, and a "Dev" tag. */
+:root[data-channel='dev'] .titlebar-mark,
+:root[data-channel='dev'] .about-mark {
+  background: linear-gradient(135deg, #de4a4a, #8c1a26);
+}
+:root[data-channel='dev'] .titlebar-name::after {
+  content: 'Dev';
+  margin-left: 6px;
+  padding: 1px 6px;
+  color: #fff;
+  background: #c03a3a;
+  border-radius: 999px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
 .titlebar-title {
   color: var(--muted);
 }

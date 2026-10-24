@@ -70,9 +70,20 @@ On Linux, make the AppImage executable (`chmod +x`) or install the `.deb` with `
 | `npm run test:features` | File selection, queue, recheck, move, ratio limit, private torrents, persistence                             |
 | `npm run test:settings` | Speed schedule, incomplete folder, watched folder, add paused, delete `.torrent`                             |
 | `npm run test:ui`       | Launches the built app via Playwright and saves screenshots to `test-output/`                                |
-| `npm run icon`          | Regenerates `build/icon.ico` / `icon.png` from code                                                          |
+| `npm run icon`          | Regenerates `build/icon.*` (and the red `icon-dev.*` for dev builds) from code                               |
 
 > When running from a VS Code terminal, `ELECTRON_RUN_AS_NODE` may be set; unset it before the Electron test scripts.
+
+### Dev builds
+
+Every pull request gets a **Peerly Dev** Windows installer to try before merging: CI publishes it as the pre-release
+`dev-pr-<number>` and links it in a comment on the pull request; it is deleted when the pull request closes. A dev build
+has a red icon and a "Dev" tag, its own app id, install folder and profile, so it lives next to the regular Peerly and
+never touches its settings or torrents. To make one locally (this edits `package.json`, don't commit it):
+
+```sh
+node scripts/dev-flavor.mjs && npm run build && node scripts/package-all.mjs win x64
+```
 
 ## Architecture
 
