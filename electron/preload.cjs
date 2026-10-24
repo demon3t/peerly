@@ -23,6 +23,7 @@ contextBridge.exposeInMainWorld('torrentAPI', {
   openDataFolder: () => ipcRenderer.invoke('app:open-data-folder'),
   updateStatus: () => ipcRenderer.invoke('app:update-status'),
   checkUpdate: () => ipcRenderer.invoke('app:check-update'),
+  updateChanges: (language) => ipcRenderer.invoke('app:update-changes', language),
   installUpdate: () => ipcRenderer.invoke('app:install-update'),
   list: () => ipcRenderer.invoke('torrent:list'),
   details: (id) => ipcRenderer.invoke('torrent:details', id),

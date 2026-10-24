@@ -85,6 +85,8 @@ const SPEED_SETTINGS = [
 
 const RELEASES_PAGE_URL = 'https://github.com/demon3t/peerly/releases';
 const RELEASES_API_URL = 'https://api.github.com/repos/demon3t/peerly/releases/latest';
+// changelog/<language>.md is read from the release tag: <CHANGELOG_BASE_URL>/v<version>/changelog/<code>.md
+const CHANGELOG_BASE_URL = 'https://raw.githubusercontent.com/demon3t/peerly';
 
 const ICON_PATH = path.join(__dirname, 'assets', 'icon.png');
 const PRELOAD_PATH = path.join(__dirname, 'preload.cjs');
@@ -100,6 +102,7 @@ module.exports = {
   SPEED_SETTINGS,
   RELEASES_PAGE_URL,
   RELEASES_API_URL,
+  CHANGELOG_BASE_URL,
   ICON_PATH,
   PRELOAD_PATH,
   RENDERER_INDEX,

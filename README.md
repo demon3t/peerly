@@ -101,7 +101,9 @@ electron/                  main process (CommonJS)
   lib/                     helpers: json-file, paths, format, errors, peer-client
 
 shared/translate.mjs       translation core used by both processes
+shared/changelog.mjs       parser of changelog/*.md (the update window, CI release notes)
 locales/                   one <code>.json per language; en.json is the reference
+changelog/                 what's new, one <code>.md per language; a section per package.json version
 
 src/                       renderer (React)
   App.jsx                  root: routing, modals, wiring hooks to pages
@@ -173,6 +175,8 @@ request. When allowed (or when you press *Check now* in Settings → About), it 
 torrents is sent. If a newer version exists, an *Update* button appears in the title bar. Pressing it — or, with
 *Update automatically* on, a background download — fetches the installer for your system from this repository's
 releases, checks its SHA-256 against the one GitHub publishes, and installs it (on quit, or right away with a restart).
+Before that, the update window reads the list of changes (`changelog/<language>.md` of that release) from
+`raw.githubusercontent.com`.
 Settings and the torrent list are stored only on your computer.
 
 ## License

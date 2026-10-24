@@ -9,6 +9,7 @@ import { AddTorrentModal } from './features/torrents/AddTorrentModal';
 import { AddTrackersModal } from './features/torrents/AddTrackersModal';
 import { DetailsPanel } from './features/torrents/DetailsPanel';
 import { RemoveTorrentModal } from './features/torrents/RemoveTorrentModal';
+import { UpdateModal } from './features/updates/UpdateModal';
 import { useTorrentActions } from './features/torrents/useTorrentActions';
 import { useDiskUsage } from './hooks/useDiskUsage';
 import { useFileDrop } from './hooks/useFileDrop';
@@ -26,7 +27,7 @@ const isTorrentFile = (filePath) => /\.torrent$/i.test(filePath);
 
 export default function App() {
   const [route, setRoute] = useState({ page: 'dashboard', filter: 'all' });
-  const [modal, setModal] = useState(null); // { type: 'add', mode, sources } | { type: 'remove' | 'trackers', item }
+  const [modal, setModal] = useState(null); // { type: 'add', mode, sources } | { type: 'remove' | 'trackers', item } | { type: 'update' }
   const [selectedId, setSelectedId] = useState(null);
 
   const { t, errorText } = useI18n();
@@ -120,10 +121,6 @@ export default function App() {
     }
   }
 
-  function installUpdate() {
-    api.installUpdate().catch(notifyError);
-  }
-
   async function makeDefaultMagnet() {
     try {
       const ok = await api.setDefaultMagnet();
@@ -136,7 +133,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <TitleBar update={update} onInstallUpdate={installUpdate} />
+      <TitleBar update={update} onOpenUpdate={() => setModal({ type: 'update' })} />
       <Sidebar
         route={route}
         counts={counts}
@@ -171,7 +168,7 @@ export default function App() {
             onMakeDefaultMagnet={makeDefaultMagnet}
             update={update}
             onCheckUpdate={() => checkUpdate().catch(notifyError)}
-            onInstallUpdate={installUpdate}
+            onOpenUpdate={() => setModal({ type: 'update' })}
           />
         )}
       </main>
@@ -209,6 +206,7 @@ export default function App() {
           }}
         />
       )}
+      {modal?.type === 'update' && <UpdateModal update={update} onClose={() => setModal(null)} />}
       {modal?.type === 'remove' && (
         <RemoveTorrentModal item={modal.item} onCancel={() => setModal(null)} onConfirm={confirmRemove} />
       )}

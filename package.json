@@ -1,6 +1,6 @@
 {
   "name": "peerly",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "author": "Peerly",
   "license": "MIT",
@@ -21,6 +21,7 @@
     "test:engine": "electron scripts/smoke-test.cjs",
     "test:ui": "npm run build && node scripts/ui-test.cjs",
     "check:locales": "node scripts/check-locales.mjs",
+    "check:changelog": "node scripts/changelog.mjs check",
     "test:features": "electron scripts/features-test.cjs",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"electron/**/*.{js,cjs}\" \"shared/**/*.mjs\" \"scripts/**/*.{js,cjs,mjs}\" \"locales/*.json\" vite.config.js",
     "test:settings": "electron scripts/settings-test.cjs",

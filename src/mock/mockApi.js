@@ -145,6 +145,7 @@ export function createMockApi() {
       latest: settings.version,
       available: false,
     }),
+    updateChanges: async () => [],
     installUpdate: desktopOnly,
     onUpdateStatus: () => () => {},
 

@@ -21,7 +21,7 @@ export function SettingsPage({
   onMakeDefaultMagnet,
   update,
   onCheckUpdate,
-  onInstallUpdate,
+  onOpenUpdate,
 }) {
   const { t } = useI18n();
   const [section, setSection] = useState('general');
@@ -59,7 +59,7 @@ export function SettingsPage({
           onChange={onChange}
           update={update}
           onCheck={onCheckUpdate}
-          onInstall={onInstallUpdate}
+          onInstall={onOpenUpdate}
         />
       )}
     </section>
@@ -473,7 +473,12 @@ function UpdatesList({ s, t, onChange, update, onCheck, onInstall }) {
         )}
         <Row title={t('updates.status.title')} hint={hint} warning={status === 'error' || status === 'downloadFailed'}>
           {update?.available && status !== 'checking' ? (
-            <button className="button button-primary" type="button" onClick={onInstall} disabled={busy}>
+            <button
+              className="button button-primary"
+              type="button"
+              onClick={onInstall}
+              disabled={status === 'installing'}
+            >
               <Download size={16} /> {t('updates.install')}
             </button>
           ) : (

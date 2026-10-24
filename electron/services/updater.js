@@ -4,12 +4,13 @@ const { EventEmitter, once } = require('events');
 const fs = require('fs');
 const path = require('path');
 const { app, net, shell } = require('electron');
-const { RELEASES_API_URL, RELEASES_PAGE_URL } = require('../config');
+const { CHANGELOG_BASE_URL, RELEASES_API_URL, RELEASES_PAGE_URL } = require('../config');
 
 const FIRST_CHECK_DELAY_MS = 15_000;
 const CHECK_INTERVAL_MS = 24 * 60 * 60 * 1000;
 const REQUEST_TIMEOUT_MS = 15_000;
 const WINDOWS_ARCH = { x64: 'x64', arm64: 'ARM64', ia32: 'x86-32bit' };
+const LANGUAGE_CODE = /^[a-z]{2,3}(?:-[A-Za-z]{2,4})?$/;
 
 /** "v0.1.0-build.3" → { core: [0, 1, 0], pre: ['build', 3] }; null when it isn't a version. */
 function parseVersion(text) {
@@ -77,6 +78,7 @@ class Updater extends EventEmitter {
     this.file = ''; // the verified installer of this.release
     this.installOnExit = null; // { relaunch } once an installer should run after shutdown
     this.checkedAt = 0;
+    this.changelog = null; // { key, promise } of the last changes() request
     this.state = { status: 'idle', current: app.getVersion(), latest: '', progress: 0 };
   }
 
@@ -158,6 +160,42 @@ class Updater extends EventEmitter {
     this.setState({ status: 'installing' });
     this.onQuit();
     return true;
+  }
+
+  /**
+   * What changed between the running version and the latest one: [{ version, date, changes }], newest first.
+   * Read from changelog/<language>.md at the release tag, falling back to English.
+   */
+  changes(language) {
+    const latest = this.state.latest;
+    if (!this.isAvailable(latest)) return Promise.resolve([]);
+    const key = `${latest}/${language}`;
+    if (this.changelog?.key !== key) {
+      const promise = this.fetchChanges(latest, language);
+      promise.catch(() => {
+        if (this.changelog?.promise === promise) this.changelog = null; // retry next time
+      });
+      this.changelog = { key, promise };
+    }
+    return this.changelog.promise;
+  }
+
+  async fetchChanges(latest, language) {
+    const { parseChangelog } = await import('../../shared/changelog.mjs');
+    // Sections are per package version: every build of 0.2.0 (0.2.0-build.N) ships the "0.2.0" section.
+    const latestBase = latest.replace(/-build\.\d+$/, '');
+    for (const code of [...new Set([language, 'en'])].filter((value) => LANGUAGE_CODE.test(value || ''))) {
+      const response = await net.fetch(`${CHANGELOG_BASE_URL}/v${latest}/changelog/${code}.md`, {
+        headers: { 'User-Agent': this.userAgent() },
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+      });
+      if (response.status === 404) continue;
+      if (!response.ok) throw new Error(`GitHub answered ${response.status}`);
+      return parseChangelog(await response.text()).filter(
+        (release) => this.isAvailable(release.version) && compareVersions(release.version, latestBase) <= 0,
+      );
+    }
+    return [];
   }
 
   /** Runs the pending installer; called once the torrents are saved, right before the process exits. */
@@ -297,7 +335,14 @@ class Updater extends EventEmitter {
   /** What the renderer sees. */
   view() {
     const { status, current, latest, progress } = this.state;
-    return { status, current, latest, progress, available: this.isAvailable(latest) };
+    return {
+      status,
+      current,
+      latest,
+      progress,
+      available: this.isAvailable(latest),
+      installsInPlace: this.installsInPlace(),
+    };
   }
 }
 

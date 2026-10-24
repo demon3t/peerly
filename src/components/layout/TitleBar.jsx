@@ -7,10 +7,9 @@ import { PeerlyMark } from './PeerlyMark';
  * Windows draws its native minimize/maximize/close buttons over the right edge.
  * Next to them sits the "Update" button while a newer version is available.
  */
-export function TitleBar({ title, update, onInstallUpdate }) {
+export function TitleBar({ title, update, onOpenUpdate }) {
   const { t } = useI18n();
   const status = update?.status;
-  const busy = status === 'downloading' || status === 'installing';
   const percent = Math.round((update?.progress || 0) * 100);
   const label =
     status === 'downloading'
@@ -30,10 +29,10 @@ export function TitleBar({ title, update, onInstallUpdate }) {
         <button
           className="titlebar-update"
           type="button"
-          onClick={onInstallUpdate}
-          disabled={busy}
+          onClick={onOpenUpdate}
+          disabled={status === 'installing'}
           title={t('updates.titlebar.hint', { version: update.latest })}
-          style={{ '--progress': `${status === 'downloading' ? percent : 0}%` }}
+          style={{ '--progress': `${status === 'downloading' ? percent : 100}%` }}
         >
           <ArrowDownToLine size={14} />
           {label}

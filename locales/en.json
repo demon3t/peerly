@@ -380,6 +380,20 @@
       "installing": "Installing version {version}…",
       "error": "Couldn't reach GitHub. Try again later",
       "downloadFailed": "Couldn't download the update. Try again"
+    },
+    "modal": {
+      "eyebrow": "Update",
+      "title": "What's new in Peerly {version}",
+      "installRestart": "Update and restart",
+      "install": "Download and install",
+      "later": "Later",
+      "loadFailed": "Couldn't load the list of changes. You can still update.",
+      "empty": "Fixes and improvements.",
+      "types": {
+        "new": "New",
+        "improved": "Improved",
+        "fixed": "Fixed"
+      }
     }
   },
   "errors": {
