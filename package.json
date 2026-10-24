@@ -25,7 +25,8 @@
     "test:features": "electron scripts/features-test.cjs",
     "format": "prettier --write \"src/**/*.{js,jsx,css}\" \"electron/**/*.{js,cjs}\" \"shared/**/*.mjs\" \"scripts/**/*.{js,cjs,mjs}\" \"locales/*.json\" vite.config.js",
     "test:settings": "electron scripts/settings-test.cjs",
-    "dist:all": "npm run build && node scripts/package-all.mjs"
+    "dist:all": "npm run build && node scripts/package-all.mjs",
+    "dist:dev": "node scripts/dist-dev.mjs"
   },
   "build": {
     "appId": "com.peerly.app",
