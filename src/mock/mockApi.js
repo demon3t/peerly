@@ -53,6 +53,9 @@ export function createMockApi() {
     version: 'preview',
     dataPath: '',
     isDefaultMagnet: false,
+    checkUpdates: false,
+    updatePromptShown: false,
+    skippedVersion: '',
   };
   const listeners = new Set();
   const i18nListeners = new Set();
@@ -135,6 +138,10 @@ export function createMockApi() {
     setDefaultMagnet: desktopOnly,
     disk: async () => ({ free: 340e9, total: 500e9 }),
     openDataFolder: desktopOnly,
+    updateStatus: async () => ({ status: 'idle', current: settings.version, latest: '' }),
+    checkUpdate: async () => ({ status: 'current', current: settings.version, latest: settings.version }),
+    openRelease: desktopOnly,
+    onUpdateStatus: () => () => {},
 
     pickTorrent: desktopOnly,
     pickContent: desktopOnly,

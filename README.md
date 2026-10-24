@@ -94,6 +94,7 @@ electron/                  main process (CommonJS)
     legacy-profile.js      one-time import of the old "Northstar" profile
     system.js              autostart, magnet handler, notifications, disk usage
     open-requests.js       .torrent/magnet arguments from Windows, buffered for the UI
+    updater.js             opt-in check of GitHub Releases for a newer version
   ui/
     main-window.js         frameless BrowserWindow, native caption buttons, hide-to-tray
     tray.js                tray icon and menu
@@ -164,7 +165,12 @@ by the user or the person installing or operating it.
 Peerly is a BitTorrent client: when you add a torrent or share files, it connects to the trackers listed in
 that torrent (plus a few public ones), to the DHT network and to other peers in order to download and upload
 that torrent's data. This is how BitTorrent works and other peers can see your IP address while a torrent is active.
-If you set an IP filter URL, Peerly downloads that list. There is no telemetry, analytics or update check.
+If you set an IP filter URL, Peerly downloads that list. There is no telemetry or analytics.
+
+On first launch Peerly asks whether to check for updates automatically; until you answer *yes*, it makes no such
+request. When allowed (or when you press *Check now* in Settings → About), it sends one anonymous request to
+`api.github.com` for the latest release of this repository — at startup and then once a day. Nothing about you or your
+torrents is sent, and nothing is downloaded or installed: Peerly only shows a link to the release page.
 Settings and the torrent list are stored only on your computer.
 
 ## License

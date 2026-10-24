@@ -62,6 +62,11 @@ const DEFAULT_SETTINGS = {
 
   // System
   startMinimized: false,
+
+  // Updates: the automatic check contacts GitHub, so it stays off until the user agrees.
+  checkUpdates: false,
+  updatePromptShown: false, // the "check for updates automatically?" question was answered
+  skippedVersion: '', // a release the user chose not to be reminded about
 };
 
 // Settings that require recreating the WebTorrent client.
@@ -78,6 +83,9 @@ const SPEED_SETTINGS = [
   'schedule',
 ];
 
+const RELEASES_PAGE_URL = 'https://github.com/demon3t/peerly/releases';
+const RELEASES_API_URL = 'https://api.github.com/repos/demon3t/peerly/releases/latest';
+
 const ICON_PATH = path.join(__dirname, 'assets', 'icon.png');
 const PRELOAD_PATH = path.join(__dirname, 'preload.cjs');
 const RENDERER_INDEX = path.join(__dirname, '..', 'dist', 'index.html');
@@ -90,6 +98,8 @@ module.exports = {
   DEFAULT_SETTINGS,
   ENGINE_SETTINGS,
   SPEED_SETTINGS,
+  RELEASES_PAGE_URL,
+  RELEASES_API_URL,
   ICON_PATH,
   PRELOAD_PATH,
   RENDERER_INDEX,

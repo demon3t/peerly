@@ -412,3 +412,49 @@
   background: var(--backdrop);
   animation: fade 0.15s ease;
 }
+
+/* ---------- update notice ---------- */
+.update-notice {
+  position: fixed;
+  z-index: 35;
+  top: calc(var(--titlebar-h) + 16px);
+  right: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: min(380px, calc(100vw - 48px));
+  padding: 15px 10px 15px 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-pop);
+  animation: toast-in 0.2s ease;
+}
+.update-notice > svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: var(--teal);
+}
+.update-notice-text {
+  display: grid;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+}
+.update-notice-text strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+}
+.update-notice-text > span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.update-notice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}

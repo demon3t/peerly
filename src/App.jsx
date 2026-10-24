@@ -2,6 +2,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { api } from './api/client';
 import { DropOverlay } from './components/DropOverlay';
 import { Toast } from './components/Toast';
+import { UpdateNotice } from './components/UpdateNotice';
 import { Sidebar } from './components/layout/Sidebar';
 import { TitleBar } from './components/layout/TitleBar';
 import { AddTorrentModal } from './features/torrents/AddTorrentModal';
@@ -14,6 +15,7 @@ import { useFileDrop } from './hooks/useFileDrop';
 import { useSettings } from './hooks/useSettings';
 import { useToast } from './hooks/useToast';
 import { useTorrents } from './hooks/useTorrents';
+import { useUpdates } from './hooks/useUpdates';
 import { useI18n } from './i18n/I18nProvider';
 import { DashboardPage } from './pages/DashboardPage';
 import { SettingsPage } from './pages/SettingsPage';
@@ -31,6 +33,7 @@ export default function App() {
   const { toast, show: notify, showError: notifyError, dismiss } = useToast({ errorText });
   const { settings, update: updateSettings, reload: reloadSettings } = useSettings({ onError: notifyError });
   const disk = useDiskUsage(settings?.downloadPath);
+  const { update, check: checkUpdate } = useUpdates();
   // Callbacks registered once (open requests, drag & drop) read the latest settings from here.
   const settingsRef = useRef(settings);
   settingsRef.current = settings;
@@ -117,6 +120,10 @@ export default function App() {
     }
   }
 
+  function openRelease() {
+    api.openRelease().catch(notifyError);
+  }
+
   async function makeDefaultMagnet() {
     try {
       const ok = await api.setDefaultMagnet();
@@ -162,6 +169,9 @@ export default function App() {
             onChange={updateSettings}
             onPickFolder={pickDownloadFolder}
             onMakeDefaultMagnet={makeDefaultMagnet}
+            update={update}
+            onCheckUpdate={() => checkUpdate().catch(notifyError)}
+            onDownloadUpdate={openRelease}
           />
         )}
       </main>
@@ -204,6 +214,7 @@ export default function App() {
       )}
 
       {dragging && !inlineDrop && <DropOverlay />}
+      <UpdateNotice settings={settings} update={update} onChange={updateSettings} onDownload={openRelease} />
       <Toast toast={toast} onDismiss={dismiss} />
     </div>
   );

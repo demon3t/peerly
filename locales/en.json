@@ -352,6 +352,29 @@
     "completedTitle": "Download complete",
     "completedBody": "{name} — files are ready and seeding."
   },
+  "updates": {
+    "title": "Updates",
+    "askTitle": "Check for updates automatically?",
+    "askBody": "Once a day Peerly will ask GitHub whether a new version is out. Nothing about you or your torrents is sent. You can change this in Settings → About.",
+    "allow": "Check automatically",
+    "deny": "Don't check",
+    "availableTitle": "Peerly {version} is available",
+    "availableBody": "You have version {version}. Download the installer from the release page.",
+    "download": "Download",
+    "skip": "Skip this version",
+    "later": "Remind me later",
+    "auto": "Check for updates automatically",
+    "autoHint": "Once a day asks GitHub for the latest release. Nothing about you or your torrents is sent",
+    "checkNow": "Check now",
+    "status": {
+      "title": "New versions",
+      "idle": "Not checked yet",
+      "checking": "Checking…",
+      "current": "You have the latest version",
+      "available": "Version {version} is available",
+      "error": "Couldn't reach GitHub. Try again later"
+    }
+  },
   "errors": {
     "unknown": "Unknown error",
     "desktopOnly": "Available in the installed app.",

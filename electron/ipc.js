@@ -18,7 +18,7 @@ function packageVersion(name) {
   }
 }
 
-function registerIpc({ manager, settings, i18n, mainWindow, onRendererReady }) {
+function registerIpc({ manager, settings, i18n, mainWindow, updater, onRendererReady }) {
   const t = (key, params) => i18n.t(key, params);
   const torrentFilter = () => [{ name: t('dialogs.torrentFiles'), extensions: ['torrent'] }];
   const handle = (channel, fn) => ipcMain.handle(channel, (_, ...args) => fn(...args));
@@ -51,6 +51,9 @@ function registerIpc({ manager, settings, i18n, mainWindow, onRendererReady }) {
   handle('app:i18n', () => i18n.bundle());
   handle('app:set-default-magnet', () => system.setDefaultMagnetClient());
   handle('app:disk', () => system.diskUsage(settings.downloadPath()));
+  handle('app:update-status', () => updater.view());
+  handle('app:check-update', () => updater.check());
+  handle('app:open-release', () => updater.openRelease());
   handle('app:open-data-folder', async () => {
     const error = await shell.openPath(app.getPath('userData'));
     if (error) throw new Error(error);
