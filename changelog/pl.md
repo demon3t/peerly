@@ -4,6 +4,13 @@
 Format opisano w changelog/en.md. Nagłówków "### New", "### Improved" i "### Fixed" nie tłumaczymy.
 -->
 
+## 0.3.0 — 2026-10-24
+
+### New
+
+- Przycisk „Opinie” na pasku tytułu: zaproponuj pomysł, zgłoś problem albo po prostu napisz, co myślisz, w gotowym
+  formularzu na GitHub z już uzupełnioną wersją Peerly i systemu.
+
 ## 0.2.0 — 2026-10-24
 
 ### New

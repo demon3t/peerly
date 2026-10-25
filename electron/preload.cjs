@@ -8,8 +8,11 @@ const subscribe = (channel) => (callback) => {
   return () => ipcRenderer.removeListener(channel, listener);
 };
 
+const channelArg = process.argv.find((arg) => arg.startsWith('--peerly-channel='));
+
 contextBridge.exposeInMainWorld('torrentAPI', {
   platform: process.platform,
+  channel: channelArg ? channelArg.split('=')[1] : 'release',
   ready: () => ipcRenderer.invoke('app:ready'),
   pickTorrent: () => ipcRenderer.invoke('dialog:pick-torrent'),
   pickContent: (kind) => ipcRenderer.invoke('dialog:pick-content', kind),
@@ -21,6 +24,7 @@ contextBridge.exposeInMainWorld('torrentAPI', {
   setDefaultMagnet: () => ipcRenderer.invoke('app:set-default-magnet'),
   disk: () => ipcRenderer.invoke('app:disk'),
   openDataFolder: () => ipcRenderer.invoke('app:open-data-folder'),
+  openFeedback: () => ipcRenderer.invoke('app:open-feedback'),
   updateStatus: () => ipcRenderer.invoke('app:update-status'),
   checkUpdate: () => ipcRenderer.invoke('app:check-update'),
   updateChanges: (language) => ipcRenderer.invoke('app:update-changes', language),

@@ -352,6 +352,10 @@
     "completedTitle": "Download complete",
     "completedBody": "{name} — files are ready and seeding."
   },
+  "feedback": {
+    "button": "Feedback",
+    "hint": "An idea, a problem or just a few words about Peerly: write to us on GitHub (needs a GitHub account). Your Peerly version and system are filled in"
+  },
   "updates": {
     "title": "Updates",
     "askTitle": "Check for updates automatically?",

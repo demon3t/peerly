@@ -3,7 +3,8 @@
 // Native modules are N-API, so instead of rebuilding them we download the matching
 // node-datachannel (WebRTC) binary before each architecture. The optional ones
 // (utp-native, fs-native-extensions) ship their own prebuilds or are skipped at runtime.
-// Run after `npm run build`: node scripts/package-all.mjs [win|mac|linux]
+// Run after `npm run build`: node scripts/package-all.mjs [win|mac|linux] [arch]
+// A dev build (scripts/dev-flavor.mjs) gets "Peerly-Dev-…" names.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,7 +13,8 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
-const version = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8')).version;
+const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+const publicName = (name) => (pkg.peerly?.channel === 'dev' ? name.replace(/^Peerly-/, 'Peerly-Dev-') : name);
 const releaseDir = path.join(root, 'release');
 const uploadDir = path.join(releaseDir, 'upload');
 
@@ -49,6 +51,10 @@ const HOST = { win32: 'win', darwin: 'mac', linux: 'linux' }[process.platform];
 const os = process.argv[2] || HOST;
 const target = TARGETS[os];
 if (!target) throw new Error(`Unknown OS "${os}". Use one of: ${Object.keys(TARGETS).join(', ')}`);
+const onlyArch = process.argv[3];
+if (onlyArch && !target.archs[onlyArch]) {
+  throw new Error(`Unknown arch "${onlyArch}" for ${os}. Use one of: ${Object.keys(target.archs).join(', ')}`);
+}
 
 const run = (command, args, cwd = root) => execFileSync(command, args, { cwd, stdio: 'inherit', shell: false });
 const nodeBin = process.execPath;
@@ -85,13 +91,14 @@ fs.mkdirSync(uploadDir, { recursive: true });
 const builder = path.join(root, 'node_modules', 'electron-builder', 'cli.js');
 try {
   for (const [arch, { prebuild, files }] of Object.entries(target.archs)) {
+    if (onlyArch && arch !== onlyArch) continue;
     fetchWebRtc(target.platform, prebuild);
     console.log(`\n> electron-builder --${os} --${arch}`);
     const before = snapshot();
     run(nodeBin, [builder, `--${os}`, `--${arch}`, '--publish', 'never']);
-    for (const [ext, publicName] of Object.entries(files)) {
-      fs.copyFileSync(builtFile(ext, before), path.join(uploadDir, publicName));
-      console.log(`  ${publicName}`);
+    for (const [ext, name] of Object.entries(files)) {
+      fs.copyFileSync(builtFile(ext, before), path.join(uploadDir, publicName(name)));
+      console.log(`  ${publicName(name)}`);
     }
   }
 } finally {

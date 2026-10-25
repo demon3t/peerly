@@ -354,6 +354,10 @@
     "completedTitle": "Pobieranie ukończone",
     "completedBody": "{name} — pliki są gotowe i udostępniane."
   },
+  "feedback": {
+    "button": "Opinie",
+    "hint": "Pomysł, problem albo po prostu kilka słów o Peerly — napisz do nas na GitHub (wymaga konta GitHub). Wersja Peerly i systemu zostanie uzupełniona"
+  },
   "updates": {
     "title": "Aktualizacje",
     "askTitle": "Sprawdzać aktualizacje automatycznie?",

@@ -1,7 +1,11 @@
 const path = require('path');
 
-const APP_ID = 'com.peerly.app';
-const APP_NAME = 'Peerly';
+// 'dev' in builds made by scripts/dev-flavor.mjs (pull request previews): red icon, own app id and profile.
+const CHANNEL = require('../package.json').peerly?.channel === 'dev' ? 'dev' : 'release';
+const DEV = CHANNEL === 'dev';
+
+const APP_ID = DEV ? 'com.peerly.app.dev' : 'com.peerly.app';
+const APP_NAME = DEV ? 'Peerly Dev' : 'Peerly';
 
 // Public trackers appended to every torrent so magnets without trackers still find peers quickly.
 const EXTRA_TRACKERS = [
@@ -84,16 +88,19 @@ const SPEED_SETTINGS = [
 ];
 
 const RELEASES_PAGE_URL = 'https://github.com/demon3t/peerly/releases';
+// New issue from a form in .github/ISSUE_TEMPLATE (the "Feedback" button in the title bar).
+const NEW_ISSUE_URL = 'https://github.com/demon3t/peerly/issues/new';
 const RELEASES_API_URL = 'https://api.github.com/repos/demon3t/peerly/releases/latest';
 // changelog/<language>.md is read from the release tag: <CHANGELOG_BASE_URL>/v<version>/changelog/<code>.md
 const CHANGELOG_BASE_URL = 'https://raw.githubusercontent.com/demon3t/peerly';
 
-const ICON_PATH = path.join(__dirname, 'assets', 'icon.png');
+const ICON_PATH = path.join(__dirname, 'assets', DEV ? 'icon-dev.png' : 'icon.png');
 const PRELOAD_PATH = path.join(__dirname, 'preload.cjs');
 const RENDERER_INDEX = path.join(__dirname, '..', 'dist', 'index.html');
 const DEV_SERVER_URL = 'http://127.0.0.1:5173';
 
 module.exports = {
+  CHANNEL,
   APP_ID,
   APP_NAME,
   EXTRA_TRACKERS,
@@ -101,6 +108,7 @@ module.exports = {
   ENGINE_SETTINGS,
   SPEED_SETTINGS,
   RELEASES_PAGE_URL,
+  NEW_ISSUE_URL,
   RELEASES_API_URL,
   CHANGELOG_BASE_URL,
   ICON_PATH,

@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { app, clipboard, dialog, ipcMain, shell } = require('electron');
 const { safeFileName } = require('./lib/format');
+const { NEW_ISSUE_URL } = require('./config');
 const system = require('./services/system');
 
 /**
@@ -55,6 +56,14 @@ function registerIpc({ manager, settings, i18n, mainWindow, updater, onRendererR
   handle('app:check-update', () => updater.check());
   handle('app:update-changes', (language) => updater.changes(String(language || '')));
   handle('app:install-update', () => updater.install());
+  // Opens a GitHub issue form in the browser; the user sees and edits everything before sending.
+  handle('app:open-feedback', async () => {
+    const url = new URL(NEW_ISSUE_URL);
+    url.searchParams.set('template', 'feedback.yml');
+    url.searchParams.set('version', `Peerly ${app.getVersion()} · ${system.systemLabel()}`);
+    await shell.openExternal(url.toString());
+    return true;
+  });
   handle('app:open-data-folder', async () => {
     const error = await shell.openPath(app.getPath('userData'));
     if (error) throw new Error(error);

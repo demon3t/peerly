@@ -1,6 +1,7 @@
 // Renders the app icon (teal tile, three connected peers) with signed
 // distance fields and writes build/icon.png, build/icon.ico and the runtime
-// copy electron/assets/icon.png. No dependencies: run `npm run icon`.
+// copy electron/assets/icon.png, plus the red "-dev" variant of each for dev
+// builds (scripts/dev-flavor.mjs). No dependencies: run `npm run icon`.
 import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
@@ -38,16 +39,22 @@ const NODES = [
   { x: 0.72, y: 0.68, r: 0.095 },
 ];
 
-function sample(x, y) {
+// Tile gradient from the top-left to the bottom-right corner.
+const PALETTES = {
+  '': { from: [20, 150, 140], to: [8, 82, 88] }, // teal: releases
+  '-dev': { from: [222, 74, 74], to: [140, 26, 38] }, // red: dev builds
+};
+
+function sample(x, y, { from, to }) {
   // background tile
   const tile = sdRoundRect(x, y, 0.5, 0.5, 0.46, 0.46, 0.2);
   if (tile > 0) return [0, 0, 0, 0];
 
-  // diagonal gradient teal -> deep teal
+  // diagonal gradient
   const t = (x + y) / 2;
-  let r = 20 + (8 - 20) * t,
-    g = 150 + (82 - 150) * t,
-    b = 140 + (88 - 140) * t;
+  let r = from[0] + (to[0] - from[0]) * t,
+    g = from[1] + (to[1] - from[1]) * t,
+    b = from[2] + (to[2] - from[2]) * t;
 
   // soft top highlight
   const glow = Math.max(0, 1 - Math.hypot(x - 0.3, y - 0.2) / 0.55) * 0.18;
@@ -67,7 +74,7 @@ function sample(x, y) {
   return [r, g, b, 255];
 }
 
-function render(size) {
+function render(size, palette) {
   const pixels = Buffer.alloc(size * size * 4);
   const n = SUPERSAMPLE * SUPERSAMPLE;
   for (let py = 0; py < size; py++) {
@@ -81,6 +88,7 @@ function render(size) {
           const [cr, cg, cb, ca] = sample(
             (px + (sx + 0.5) / SUPERSAMPLE) / size,
             (py + (sy + 0.5) / SUPERSAMPLE) / size,
+            palette,
           );
           r += cr * ca;
           g += cg * ca;
@@ -174,25 +182,27 @@ function encodeIcns(entries) {
 
 // ---------- output ----------
 
-const images = SIZES.map((size) => ({ size, png: encodePng(size, render(size)) }));
-const largest = images[images.length - 1].png;
 // Linux packages use build/icon.png (at least 512 px); macOS uses build/icon.icns.
 const PACKAGE_SIZE = 1024;
-const packagePng = encodePng(PACKAGE_SIZE, render(PACKAGE_SIZE));
 const ICNS_TYPES = { 128: 'ic07', 256: 'ic08', 512: 'ic09', 1024: 'ic10' };
 
 fs.mkdirSync(path.join(root, 'build'), { recursive: true });
 fs.mkdirSync(path.join(root, 'electron', 'assets'), { recursive: true });
-fs.writeFileSync(path.join(root, 'build', 'icon.png'), packagePng);
-fs.writeFileSync(
-  path.join(root, 'build', 'icon.icns'),
-  encodeIcns(
-    Object.entries(ICNS_TYPES).map(([size, type]) => ({
-      type,
-      png: Number(size) === PACKAGE_SIZE ? packagePng : encodePng(Number(size), render(Number(size))),
-    })),
-  ),
-);
-fs.writeFileSync(path.join(root, 'build', 'icon.ico'), encodeIco(images));
-fs.writeFileSync(path.join(root, 'electron', 'assets', 'icon.png'), largest);
-console.log(`Icon written (${SIZES.join(', ')} px; package icon and .icns up to ${PACKAGE_SIZE} px).`);
+for (const [suffix, palette] of Object.entries(PALETTES)) {
+  const images = SIZES.map((size) => ({ size, png: encodePng(size, render(size, palette)) }));
+  const largest = images[images.length - 1].png;
+  const packagePng = encodePng(PACKAGE_SIZE, render(PACKAGE_SIZE, palette));
+  fs.writeFileSync(path.join(root, 'build', `icon${suffix}.png`), packagePng);
+  fs.writeFileSync(
+    path.join(root, 'build', `icon${suffix}.icns`),
+    encodeIcns(
+      Object.entries(ICNS_TYPES).map(([size, type]) => ({
+        type,
+        png: Number(size) === PACKAGE_SIZE ? packagePng : encodePng(Number(size), render(Number(size), palette)),
+      })),
+    ),
+  );
+  fs.writeFileSync(path.join(root, 'build', `icon${suffix}.ico`), encodeIco(images));
+  fs.writeFileSync(path.join(root, 'electron', 'assets', `icon${suffix}.png`), largest);
+}
+console.log(`Icons written (${SIZES.join(', ')} px; package icon and .icns up to ${PACKAGE_SIZE} px).`);

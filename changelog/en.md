@@ -8,6 +8,13 @@ the version and add a section for every release worth announcing. Keep the "### 
 developers: what they can now do or what works better.
 -->
 
+## 0.3.0 — 2026-10-24
+
+### New
+
+- A "Feedback" button in the title bar: share an idea, report a problem or just tell us what you think, in a ready
+  form on GitHub with your Peerly version and system filled in.
+
 ## 0.2.0 — 2026-10-24
 
 ### New

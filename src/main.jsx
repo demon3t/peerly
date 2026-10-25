@@ -8,6 +8,8 @@ import './styles/index.css';
 
 // macOS draws its window buttons on the left of the title bar; CSS makes room for them.
 if (window.torrentAPI?.platform) document.documentElement.dataset.platform = window.torrentAPI.platform;
+// Dev builds (pull request previews) get a red mark, like their icon.
+if (window.torrentAPI?.channel === 'dev') document.documentElement.dataset.channel = 'dev';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
