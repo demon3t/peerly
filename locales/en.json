@@ -354,7 +354,7 @@
   },
   "feedback": {
     "button": "Feedback",
-    "hint": "Suggest an idea or report a problem on GitHub (needs a GitHub account). Your Peerly version and system are filled in"
+    "hint": "An idea, a problem or just a few words about Peerly: write to us on GitHub (needs a GitHub account). Your Peerly version and system are filled in"
   },
   "updates": {
     "title": "Updates",

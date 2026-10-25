@@ -1,6 +1,6 @@
 # Opened from Peerly's "Feedback" button in the title bar, which pre-fills the "version" field.
 name: Feedback
-description: Suggest an idea or report a problem.
+description: An idea, a problem or just a few words about Peerly.
 body:
   - type: dropdown
     id: kind
@@ -9,13 +9,14 @@ body:
       options:
         - An idea for Peerly
         - Something doesn't work
+        - Something else (praise, a question…)
     validations:
       required: true
   - type: textarea
     id: message
     attributes:
       label: Tell us more
-      description: For an idea, what should Peerly do and why. For a problem, what happened, what you expected and how to reproduce it.
+      description: For an idea, what should Peerly do and why. For a problem, what happened, what you expected and how to reproduce it. Anything else, just write.
     validations:
       required: true
   - type: input

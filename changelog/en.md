@@ -12,8 +12,8 @@ developers: what they can now do or what works better.
 
 ### New
 
-- A "Feedback" button in the title bar: suggest an idea or report a problem in a ready form on GitHub with your
-  Peerly version and system filled in.
+- A "Feedback" button in the title bar: share an idea, report a problem or just tell us what you think, in a ready
+  form on GitHub with your Peerly version and system filled in.
 
 ## 0.2.0 — 2026-10-24
 

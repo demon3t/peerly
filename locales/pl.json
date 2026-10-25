@@ -355,8 +355,8 @@
     "completedBody": "{name} — pliki są gotowe i udostępniane."
   },
   "feedback": {
-    "button": "Opinia",
-    "hint": "Zaproponuj pomysł lub zgłoś problem na GitHub (wymaga konta GitHub). Wersja Peerly i systemu zostanie uzupełniona"
+    "button": "Opinie",
+    "hint": "Pomysł, problem albo po prostu kilka słów o Peerly — napisz do nas na GitHub (wymaga konta GitHub). Wersja Peerly i systemu zostanie uzupełniona"
   },
   "updates": {
     "title": "Aktualizacje",
